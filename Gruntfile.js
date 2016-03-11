@@ -97,7 +97,7 @@ module.exports = function (grunt) {
         cssmin: {
             theme: {
                 options: {
-                    report: 'min'
+                   // report: 'min'
                 },
                 files: [{
                     expand: true,

@@ -6,7 +6,7 @@
 <html lang="{{LANGUAGE_CODE}}">
 <head>
   <meta charset="UTF-8">
-  {% block title %}<title>{% platform_name %}</title>{% endblock %}
+  {% block title %}<title>sdf{% platform_name %}</title>{% endblock %}
 
  <link rel="icon" type="image/x-icon" href="{% favicon_path %}" />
 
@@ -21,7 +21,7 @@
   {% block headextra %}{% endblock %}
   {% render_block "css" %}
 
-  {% include "theme-head-extra.html" %}
+  {% include "theme-head-extraq.html" %}
 
   <meta name="path_prefix" content="{{EDX_ROOT_URL}}">
 </head>
@@ -32,7 +32,7 @@
     {% with course=request.course %}
       {% include "theme-header.html" %}
     {% endwith %}
-    <div class="content-wrapper" id="content">
+    <div class="cccccontent-wrapper" id="content">
       {% block body %}{% endblock %}
       {% block bodyextra %}{% endblock %}
     </div>
