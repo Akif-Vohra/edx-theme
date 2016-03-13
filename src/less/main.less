@@ -8,6 +8,7 @@
 @import 'reset.less';
 @import 'global/main.less';
 
+
 body {
   background-color: #f0f0f0;
   background: linear-gradient(to left, white 0%,white 50%,#ffffff 50%,#f0f0f0 50%,#f0f0f0 100%); /* W3C */
@@ -58,6 +59,7 @@ body {
 	background-color: @white;
 	border-bottom: 1px solid @color-mediumgrey;
 }
+
 .container > div {
 	border: none;
 }
@@ -68,6 +70,10 @@ body header.global.slim {
 	> nav {
 		padding: 10px 0;
 		position: relative;
+		&.nav-wrapper {
+			margin: 0;
+			padding: 0;
+		}
 		.caption {
 			position: absolute;
 			bottom: 0;
@@ -114,6 +120,7 @@ body header.global.slim {
 			}
 		}
 		i {
+			width: 100px;
 			float: right;
 			color: @white;
 			margin: 5px 0 0 0;
@@ -203,7 +210,7 @@ body header.global.slim {
 			font-size: @font-size-h3;
 			font-weight: normal;
 			color: @color-darkgrey;
-			//color: #ff0000;
+			color: #ff0000;
 		}
 		h4 {
 			font-family: @font-family-headings;

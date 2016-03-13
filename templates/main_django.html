@@ -1,27 +1,25 @@
 <!DOCTYPE html>
-{% load compressed %}
-{% load sekizai_tags i18n microsite %}
+{% load sekizai_tags i18n microsite pipeline optional_include %}
 {% load url from future %}
-{% load staticfiles %}
 <html lang="{{LANGUAGE_CODE}}">
 <head>
   <meta charset="UTF-8">
-  {% block title %}<title>sdf{% platform_name %}</title>{% endblock %}
+  {% block title %}<title>{% platform_name %}</title>{% endblock %}
 
  <link rel="icon" type="image/x-icon" href="{% favicon_path %}" />
 
-  {% compressed_css 'style-vendor' %}
-  {% compressed_css 'style-main' %}
-  {% compressed_css 'style-course-vendor' %}
-  {% compressed_css 'style-course' %}
+  {% stylesheet 'style-vendor' %}
+  {% stylesheet 'style-main' %}
+  {% stylesheet 'style-course-vendor' %}
+  {% stylesheet 'style-course' %}
 
   {% block main_vendor_js %}
-  {% compressed_js 'main_vendor' %}
+  {% javascript 'main_vendor' %}
   {% endblock %}
   {% block headextra %}{% endblock %}
   {% render_block "css" %}
 
-  {% include "theme-head-extraq.html" %}
+  {% optional_include "head-extra.html" %}
 
   <meta name="path_prefix" content="{{EDX_ROOT_URL}}">
 </head>
@@ -30,19 +28,22 @@
   <div class="window-wrap" dir="${static.dir_rtl()}">
     <a class="nav-skip" href="{% block nav_skip %}#content{% endblock %}">{% trans "Skip to main content" %}</a>
     {% with course=request.course %}
-      {% include "theme-header.html" %}
+      {% include "header.html" %}
     {% endwith %}
-    <div class="cccccontent-wrapper" id="content">
+    <div class="content-wrapper" id="content">
       {% block body %}{% endblock %}
       {% block bodyextra %}{% endblock %}
     </div>
-    {% include "theme-footer.html" %}
+    {% with course=request.course %}
+      {% include "footer.html" %}
+    {% endwith %}
+
   </div>
 
-  {% compressed_js 'application' %}
-  {% compressed_js 'module-js' %}
+    {% javascript 'application' %}
+    {% javascript 'module-js' %}
 
-  {% render_block "js" %}
+    {% render_block "js" %}
 </body>
 </html>
 
