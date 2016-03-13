@@ -8,6 +8,11 @@
 @import 'reset.less';
 @import 'global/main.less';
 
+body {
+  background-color: #f0f0f0;
+  background: linear-gradient(to left, white 0%,white 50%,#ffffff 50%,#f0f0f0 50%,#f0f0f0 100%); /* W3C */
+}
+
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
@@ -35,19 +40,23 @@
 
 
 
-ul {
+.xblock ul {
 	margin: 0;
 	padding: 0;
 }
 
-ul li {
+.xblock ul li {
   background: transparent url("../images/plus.png") 2px 5px no-repeat;
   list-style: outside none none;
   margin: 0px 0px 8px;
   padding-left: 30px;
 }
 .content-wrapper {
-	background: @white;
+	//background: @white;
+}
+.wrapper-course-material {
+	background-color: @white;
+	border-bottom: 1px solid @color-mediumgrey;
 }
 .container > div {
 	border: none;
@@ -57,22 +66,71 @@ ul li {
 body header.global.slim {
 	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.26);
 	> nav {
-		padding: 10px 0 0 0;
+		padding: 10px 0;
+		position: relative;
+		.caption {
+			position: absolute;
+			bottom: 0;
+			margin: 0 0 5px 110px;
+			padding: 0;
+			font-size: 13px;
+			font-weight: bold;
+			color: @white;
+			text-transform: uppercase;
+		}
+		h1.logo {
+			padding: 0;
+			margin: 0 30px 0 0;
+			a {
+				width: 100px;
+			}
+		}
 		h2 {
+			width: 100%;
+			bottom: 0;
+			padding: 0;
+			margin: 0 0 3px 0;
+			position: absolute;
+			text-align: center;
 			.course-name {
 				font-size: 20px;
+				line-height: 20px;
 			}
+		}
+		ol.user > li.primary {
+			button {
+				background-color: none;
+				padding: 0;
+				margin: 0 10px;
+				&.dropdown {
+					background-color: @color-primary;
+				}
+			}
+			> a {
+			background-color: @color-primary;
+			color: @white;
+			padding: 0;
+			margin: 5px 0 0 0;
+			}
+		}
+		i {
+			float: right;
+			color: @white;
+			margin: 5px 0 0 0;
 		}
 	}
 }
 .container {
 	padding: 0;
+	> div {
+		box-shadow: none;
+	}
 }
 
 // Kursnavigator
 .course-index {
 	background-color: @color-lightgrey;
-	border: none;
+	border-bottom: 1px solid @color-lightgrey;
 	
 	.accordion {
 		.course-navigation {
@@ -105,8 +163,13 @@ body header.global.slim {
 								background-color: @color-secondary;
 								color: @white;
 								font-weight: 400;
+								&:hover {
+									color: @color-darkgrey;
+								}	
 							}
+							
 						}
+
 						a {
 							padding: 10px 5px 10px 40px;
 							font-weight: 400;
@@ -114,6 +177,9 @@ body header.global.slim {
 							p {
 								margin: 0;
 								padding: 0;
+							}
+							&:hover {
+								background-color: @white;
 							}
 						}
 						&:last-of-type {
@@ -126,7 +192,9 @@ body header.global.slim {
 	}
 }
 
-
+.course-wrapper .course-content .vert-mod .vert > .xblock-student_view {
+	border: none;
+}
 .xblock {
 	&.xmodule_HtmlModule {
 		

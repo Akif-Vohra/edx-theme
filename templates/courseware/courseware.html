@@ -217,7 +217,7 @@ ${fragment.foot_html()}
 
   </div>
 </div>
-<div class="container-footer">
+<%doc><div class="container-footer">
   % if settings.FEATURES.get("LICENSING", False):
     <div class="course-license">
     % if getattr(course, "license", None):
@@ -229,6 +229,7 @@ ${fragment.foot_html()}
     </div>
   % endif
 </div>
+</%doc>
 
 <nav class="nav-utilities ${"has-utility-calculator" if course.show_calculator else ""}" aria-label="${_('Course Utilities')}">
   ## Utility: Notes
