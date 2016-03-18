@@ -79,14 +79,7 @@ site_status_msg = get_site_status_msg(course_id)
       </%block>
     </ol>
     <ol class="user">
-      <li class="primary">
-        <a href="${reverse('dashboard')}" class="user-link">
-          <span class="sr">${_("Dashboard for:")}</span>
-          <div>
-          ${user.username}
-          </div>
-        </a>
-      </li>
+
       <li class="primary">
         <button class="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr">${_("More options dropdown")}</span>
         <i class="material-icons md-36 md-light menu">menu</i></button>
@@ -100,6 +93,14 @@ site_status_msg = get_site_status_msg(course_id)
         </ul>
       </li>
       <li class="primary"><i class="material-icons md-36 md-light menu">notifications</i></li>
+      <li class="primary">
+        <a href="${reverse('dashboard')}" class="user-link">
+          <span class="sr">${_("Dashboard for:")}</span>
+          <div>
+          ${user.username}
+          </div>
+        </a>
+      </li>
     </ol>
       % if should_display_shopping_cart_func() and not (course and microsite.is_request_in_microsite()): # see shoppingcart.context_processor.user_has_cart_context_processor
         <ol class="user">
