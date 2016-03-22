@@ -65,11 +65,6 @@ site_status_msg = get_site_status_msg(course_id)
     % if user.is_authenticated():
     <ol class="left nav-global authenticated">
       <%block name="navigation_global_links_authenticated">
-        % if settings.FEATURES.get('COURSES_ARE_BROWSABLE'):
-          <li class="nav-global-01">
-            <a href="${marketing_link('COURSES')}">${_('Find Courses')}</a>
-          </li>
-        % endif
         %if settings.FEATURES.get('ENABLE_SYSADMIN_DASHBOARD','') and user.is_staff:
           <li>
             ## Translators: This is short for "System administration".
@@ -129,11 +124,6 @@ site_status_msg = get_site_status_msg(course_id)
         % endif
       </%block>
       % if not settings.FEATURES['DISABLE_LOGIN_BUTTON']:
-          % if settings.FEATURES.get('ENABLE_COURSE_DISCOVERY'):
-          <li class="nav-global-05">
-            <a class="cta cta-discovery" href="/courses">${_("Find Courses")}</a>
-          </li>
-          %endif
           % if course and settings.FEATURES.get('RESTRICT_ENROLL_BY_REG_METHOD') and course.enrollment_domain:
           <li class="nav-global-04">
             <a class="cta cta-register" href="${reverse('course-specific-register', args=[course.id.to_deprecated_string()])}">${_("Register")}</a>
@@ -148,6 +138,14 @@ site_status_msg = get_site_status_msg(course_id)
     </ol>
 
     <ol class="right nav-courseware">
+    	% if settings.FEATURES.get('COURSES_ARE_BROWSABLE'):
+          <li class="nav-global-01">
+            <a href="${marketing_link('COURSES')}">${_('Find Courses')}</a>
+          </li>
+        % endif
+    	
+    	
+    	
     <li class="nav-courseware-01">
       % if not settings.FEATURES['DISABLE_LOGIN_BUTTON']:
           % if course and settings.FEATURES.get('RESTRICT_ENROLL_BY_REG_METHOD') and course.enrollment_domain:

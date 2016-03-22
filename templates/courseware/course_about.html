@@ -117,17 +117,17 @@ from openedx.core.lib.courses import course_image_url
             % endif
           </h1>
         </hgroup>
-
+        %if user.is_authenticated() and registered:
+		<span class="register disabled">${_("You are enrolled in this course")}</span>
+		%endif
         <div class="main-cta">
         %if user.is_authenticated() and registered:
           %if show_courseware_link:
             <a href="${course_target}">
           %endif
 
-          <span class="register disabled">${_("You are enrolled in this course")}</span>
-
           %if show_courseware_link:
-            <strong>${_("View Courseware")}</strong>
+            ${_("View Courseware")}
             </a>
           %endif
 
@@ -263,10 +263,10 @@ from openedx.core.lib.courses import course_image_url
                 <i class="icon fa fa-twitter"></i><span class="sr">${_("Tweet that you've enrolled in this course")}</span>
               </a>
               <a href="${facebook_link}" class="share">
-                <i class="icon fa fa-thumbs-up"></i><span class="sr">${_("Post a Facebook message to say you've enrolled in this course")}</span>
+                <i class="material-icons">thumb_up</i> <span class="sr">${_("Post a Facebook message to say you've enrolled in this course")}</span>
               </a>
               <a href="${email_subject}" class="share">
-                <i class="icon fa fa-envelope"></i><span class="sr">${_("Email someone to say you've enrolled in this course")}</span>
+                <i class="material-icons">mail_outline</i> <span class="sr">${_("Email someone to say you've enrolled in this course")}</span>
               </a>
             % endif
           </div>
@@ -274,15 +274,15 @@ from openedx.core.lib.courses import course_image_url
         </header>
 
         <ol class="important-dates">
-          <li class="important-dates-item"><i class="icon fa fa-info-circle"></i><p class="important-dates-item-title">${_("Course Number")}</p><span class="important-dates-item-text course-number">${course.display_number_with_default | h}</span></li>
+          <li class="important-dates-item"><i class="material-icons">info_outline</i> <p class="important-dates-item-title">${_("Course Number")}</p> <span class="important-dates-item-text course-number">${course.display_number_with_default | h}</span></li>
           % if not course.start_date_is_still_default:
-            <li class="important-dates-item"><i class="icon fa fa-calendar"></i><p class="important-dates-item-title">${_("Classes Start")}</p><span class="important-dates-item-text start-date">${course.start_datetime_text()}</span></li>
+            <li class="important-dates-item"><i class="material-icons">insert_invitation</i> <p class="important-dates-item-title">${_("Classes Start")}</p><span class="important-dates-item-text start-date">${course.start_datetime_text()}</span></li>
           % endif
             ## We plan to ditch end_date (which is not stored in course metadata),
             ## but for backwards compatibility, show about/end_date blob if it exists.
             % if get_course_about_section(request, course, "end_date") or course.end:
             <li class="important-dates-item">
-                <i class="icon fa fa-calendar"></i>
+                <i class="material-icons">insert_invitation</i>
                 <p class="important-dates-item-title">${_("Classes End")}</p>
                 <span class="important-dates-item-text final-date">
                     % if get_course_about_section(request, course, "end_date"):
@@ -295,14 +295,14 @@ from openedx.core.lib.courses import course_image_url
             % endif
 
           % if get_course_about_section(request, course, "effort"):
-            <li class="important-dates-item"><i class="icon fa fa-pencil"></i><p class="important-dates-item-title">${_("Estimated Effort")}</p><span class="important-dates-item-text effort">${get_course_about_section(request, course, "effort")}</span></li>
+            <li class="important-dates-item"><i class="material-icons">timelapse</i> <p class="important-dates-item-title">${_("Estimated Effort")}</p><span class="important-dates-item-text effort">${get_course_about_section(request, course, "effort")}</span></li>
           % endif
 
           ##<li class="important-dates-item"><i class="icon fa fa-clock-o"></i><p class="important-dates-item-title">${_('Course Length')}</p><span class="important-dates-item-text course-length">${_('{number} weeks').format(number=15)}</span></li>
 
           %if course_price and (can_add_course_to_cart or is_cosmetic_price_enabled):
             <li class="important-dates-item">
-              <i class="icon fa fa-money"></i>
+              <i class="material-icons">euro_symbol</i>
               <p class="important-dates-item-title">${_("Price")}</p>
               <span class="important-dates-item-text">${course_price}</span>
             </li>
