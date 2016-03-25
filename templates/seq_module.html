@@ -46,18 +46,76 @@
   <div id="seq_content"></div>
 
   <nav class="sequence-bottom" aria-label="${_('Section')}">
-    <button class="sequence-nav-button button-previous">
-        <span class="icon fa fa-chevron-prev" aria-hidden="true"></span><span class="sr">${_('Previous')}</span>
-    </button>
-    <button class="sequence-nav-button button-next">
-        <span class="icon fa fa-chevron-next" aria-hidden="true"></span><span class="sr">${_('Next')}</span>
-    </button>
+
+        <a href="https://www.lynxbroker.de/wertpapierdepot/infopaket/" class="btn btn-light prev-subsection">${_('Previous')}</a>
+         <br/>
+        <a href="https://www.lynxbroker.de/wertpapierdepot/infopaket/" class="btn btn-light next-subsection">${_('Next')}</a>
+
+
+
+
+    ##<button class="sequence-nav-button button-previous">
+     ##   <span class="icon fa fa-chevron-prev" aria-hidden="true"></span><span class="sr">${_('Previous')}</span>
+    ##</button>
+    ##<button class="sequence-nav-button button-next">
+     ##   <span class="icon fa fa-chevron-next" aria-hidden="true"></span><span class="sr">${_('Next')}</span>
+    ##</button>
   </nav>
 </div>
 
 <script type="text/javascript">
   var sequenceNav;
+
   $(document).ready(function() {
+
     sequenceNav = new SequenceNav($('.sequence-nav'));
+
+    current_menu_item = $('.menu-item.active');
+    previous_menu_item = current_menu_item.prev();
+    next_menu_item = current_menu_item.next();
+
+    //If current menu item is last child try to find first subsection of next section
+    if(current_menu_item.is(':last-child')){
+        next_chapter = $('.menu-item.active').parent().parent().next('.button-chapter').next();
+
+        if(next_chapter) {
+            next_menu_item = next_chapter.find('.menu-item')[0];
+        }
+        else{
+            next_menu_item = null;
+        }
+    }
+
+    //If current menu item is first child find last subsction of previous section
+    if(current_menu_item.is(':first-child')){
+         previous_chapter = $('.menu-item.active').parent().parent().prev('.button-chapter').prev();
+
+        if(previous_chapter) {
+            previous_menu_item = previous_chapter.find('.menu-item')[0];
+        }
+        else{
+            previous_menu_item = null;
+        }
+    }
+
+    //If current menu items is last child then check if next subsection exists.
+    if(previous_menu_item){
+        $('.prev-subsection').attr('href', $(previous_menu_item).find('a').attr('href'));
+    }
+    else{
+        $('.prev-subsection').attr('disabled', 'disabled');
+        $('.prev-subsection').addClass('disabled');
+    }
+
+
+    if(next_menu_item){
+        $('.next-subsection').attr('href', $(next_menu_item).find('a').attr('href'));
+    }
+    else{
+        $('.next-subsection').attr('disabled', 'disabled');
+        $('.next-subsection').addClass('disabled');
+    }
   });
+
+
 </script>
