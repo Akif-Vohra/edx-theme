@@ -4,41 +4,9 @@ from django.utils.translation import ugettext as _
 
 <h2>${chapter_module.display_name_with_default}</h2>
 
-<p>${_("You were most recently in {section_link}.").format(
-	    section_link=u'<a href="{url}"><b>{section_name}</b></a>'.format(
+<p>${_("You were most recently in {section_link}.  If you\'re done with that, choose another section on the left.").format(
+	    section_link=u'<a href="{url}">{section_name}</a>'.format(
 	        url=prev_section_url,
 	        section_name=prev_section.display_name_with_default,
 	    )
-    )} <span class="resume-wrapper">Click here to <a href="#" class="btn btn-light resume">${_('Resume')}</a> </span>
-
-
-
-
-<script>
-    current_menu_item = $('.course-navigation').find('a[href="${prev_section_url}"]').parent();
-    next_menu_item = current_menu_item.next();
-
-    //If current menu item is last child try to find first subsection of next section
-    if(current_menu_item.is(':last-child')){
-        next_chapter = current_menu_item.parent().parent().next('.button-chapter').next();
-
-        if(next_chapter) {
-            next_menu_item = next_chapter.find('.menu-item')[0];
-        }
-        else{
-            next_menu_item = null;
-        }
-    }
-
-    if(next_menu_item){
-        $('.resume').attr('href', $(next_menu_item).find('a').attr('href'));
-    }
-
-    else{
-        $('.resume').remove();
-        $('.resume-wrapper').text('Which is the last section of this course.')
-    }
-
-
-
-</script>
+    )}</p>
