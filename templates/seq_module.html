@@ -48,7 +48,6 @@
   <nav class="sequence-bottom" aria-label="${_('Section')}">
 
         <a href="#" class="btn btn-light prev-subsection">${_('Previous')}</a>
-         <br/>
         <a href="#" class="btn btn-light next-subsection">${_('Next')}</a>
 
 
@@ -91,7 +90,7 @@
          previous_chapter = $('.menu-item.active').parent().parent().prev('.button-chapter').prev();
 
         if(previous_chapter) {
-            previous_menu_item = previous_chapter.find('.menu-item')[0];
+            previous_menu_item = previous_chapter.find('.menu-item:last')[0];
         }
         else{
             previous_menu_item = null;
