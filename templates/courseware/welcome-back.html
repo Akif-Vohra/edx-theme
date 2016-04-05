@@ -1,5 +1,6 @@
 <%!
-from django.utils.translation import ugettext as _ 
+from django.utils.translation import ugettext as _
+
 %>
 
 <h2>${chapter_module.display_name_with_default}</h2>
@@ -10,3 +11,32 @@ from django.utils.translation import ugettext as _
 	        section_name=prev_section.display_name_with_default,
 	    )
     )}</p>
+</br>
+<span><b>Course Title:</b> <i id="course_title"></i></span></br>
+<span><b>Short Description:</b> <i id="short_description"></i></span></br>
+<span><b>Total Points:</b> <i id="total_points"></i></span></br>
+<span><b>Earned Points:</b> <i id="earned_points"></i></span></br>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+		$.ajax({
+            url: '/custom_api/courses-data/${course.id}',
+            type: 'GET',
+            contentType: 'application/json',
+            xhrFields: {
+				withCredentials: true
+			},
+            success: function(result) {
+                $("#total_points").html(result.total);
+                $("#earned_points").html(result.earned);
+                $("#short_description").html(result.short_description);
+                $("#course_title").html(result.title);
+            },
+            error: function() {
+                alert('Error: cannot connect to server');
+            }
+        });
+
+  });
+</script>
