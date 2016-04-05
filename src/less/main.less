@@ -80,11 +80,11 @@ body, body.view-in-course {
 	}
 	.container {
 		padding: 0;
-		background: @white;
+		//background: @white;
 		> div {
 			border: none;
 			box-shadow: none;
-			padding: 20px 0 0 10px;
+			padding: 0 0 0 10px;
 			background: @white;
 			height:100%;
 		}
@@ -235,6 +235,7 @@ h1, h2, h3, h4, h5 {
 	color: @color-darkgrey;
 	border: none;
 	line-height: @line-height-headings;
+	text-align: left;
 }
 h1 {
 	font-size: @font-size-h3;
@@ -249,6 +250,7 @@ h4 {
 	color: @color-secondary; 
 	border-top: 1px solid @color-lines;
 	padding: 25px 0 15px 0;
+	line-height: 1.3em;
 }
 h5 {
 	font-size: @font-size-h4;
@@ -366,6 +368,7 @@ div.course-wrapper {
 		.vert-mod {
 			&>div ul {
 				margin: 0;
+				padding: 0
 			}
 			.vert > .xblock-student_view {
 				border: none;
@@ -385,7 +388,7 @@ div.course-wrapper {
 		padding: 0;
 	}
 	ul li {
-  		background: transparent url("../images/plus.png") 2px 5px no-repeat;
+  		background: transparent url("../images/plus.png") 2px 7px no-repeat;
   		list-style: outside none none;
   		margin: 0px 0px 8px;
   		padding-left: 30px;
@@ -504,7 +507,7 @@ div.course-wrapper {
 	.lynxcheckpoint_xblock {
 		* {
 			color: @white;
-			font-size: 17px;
+			font-size: 14px;
 			text-align: center;
 		}
 		background: @color-secondary;
@@ -512,6 +515,19 @@ div.course-wrapper {
 		padding: 30px 2.5em 15px;
 		margin: 0 -2.5em 0 0;
 		.lynxcheckpoint_checkpoint {
+		}
+	}
+	//xBlock Highlight Box
+	.lynxszenario_xblock {
+		background: @color-lightgreen;
+		padding: 10px 35px;
+		margin: 30px 0;
+		border: none;
+		border-radius: @default-border-radius;
+		h4 {
+			border: none;
+			margin: 0;
+			color: @color-darkgrey;
 		}
 	}
 	// edx xBlock Discussion
@@ -524,6 +540,18 @@ div.course-wrapper {
 			padding: 0;
 			margin: 0;
 			padding: 20px 2.5em !important;
+			::-webkit-input-placeholder {
+   				color: @color-mediumgrey;
+			}
+			:-moz-placeholder { /* Firefox 18- */
+				color: @color-mediumgrey;  
+			}
+			::-moz-placeholder {  /* Firefox 19+ */
+   				color: @color-mediumgrey;  
+			}
+			:-ms-input-placeholder {  
+   				color: @color-mediumgrey;  
+			}
 			.new-post-btn {
 				border: none;
 				background: @color-secondary;
@@ -542,8 +570,7 @@ div.course-wrapper {
 				font-family: @font-family-headings;
 				line-height: @font-size-base;
 				.new-post-icon {
-					margin: -2px 10px 0 0;
-					padding: 0;
+					display: none;
 				}
 				&:hover {
 					box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); 
@@ -551,6 +578,9 @@ div.course-wrapper {
 				&:focus {
 					box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 16px 0 rgba(0, 0, 0, 0.19);
 				}
+			}
+			i {
+				margin: 0;
 			}
 		}
 	}
@@ -561,11 +591,10 @@ div.course-wrapper {
 			width: auto;
 			height:auto;
 			a {
-				width: 100px;
 				font-family: @font-family-headings;
 				color: @color-secondary;
 				line-height: 1em;
-				padding: 13px 12px 7px 12px;
+				padding: 0;
 				background: none;
 				border: none;
 				font-size: 1.3em;
@@ -576,6 +605,16 @@ div.course-wrapper {
 				}
 				&.prev-subsection {
 					margin-right: 15px;
+				}
+			}
+			i {
+				color: @color-secondary;
+				margin: 0;
+				font-size: 30px;
+				padding-bottom: 2px;
+				&:hover, &:focus, &:active {
+					color: @color-secondary-dark;
+					box-shadow: none;
 				}
 			}
 		}
@@ -613,9 +652,9 @@ input[type="submit"], .forum-new-post-form .submit {
 	color: @white;
 	}
 .forum-new-post-form .post-type-label {
-	background: @color-mediumgrey;
+	//background: @color-mediumgrey;
 	box-shadow: none;
-	border: none;
+	//border: none;
 	border-radius: @default-border-radius;
 	font-family: @font-family-headings;
 	font-size: @font-size-base;
@@ -624,6 +663,7 @@ input[type="submit"], .forum-new-post-form .submit {
 	padding: 0;
 	height: auto;
 	font-weight: 400;
+
 }
 //Forms
 .courseware-search-bar {
@@ -790,6 +830,9 @@ input[type="submit"], .forum-new-post-form .submit {
 //About site - content wrapper
 .static_tab_wrapper {
 	background-color: @white;
+}
+section.about {
+	padding: 30px 0 10px 0;
 }
 //Aktuelles site – content wrapper
 div.info-wrapper {
@@ -987,7 +1030,16 @@ section.container.dashboard {
 		text-transform: none;
 	}
 }
-
+//// Back-Button on Imprint, Datenschutz, Disclaimer Page
+.back {
+	font-weight: bold;
+	color: @color-secondary !important;
+	i {
+		color: @color-secondary;
+		font-size: 30px;
+		margin: 0;
+	}
+}
 ///////////////////////////////////////////////////////////////////////////////////////
 /* Style Marketing-Website Footer */
 footer, header, hgroup, main, menu, nav, section, summary {
