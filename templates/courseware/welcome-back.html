@@ -11,11 +11,18 @@ from django.utils.translation import ugettext as _
 	        section_name=prev_section.display_name_with_default,
 	    )
     )}</p>
+
 </br>
+<span><img src="" id="course_image" height="300px" width="300px"/></span></br>
 <span><b>Course Title:</b> <i id="course_title"></i></span></br>
 <span><b>Short Description:</b> <i id="short_description"></i></span></br>
 <span><b>Total Points:</b> <i id="total_points"></i></span></br>
 <span><b>Earned Points:</b> <i id="earned_points"></i></span></br>
+<span><b>Percentage:</b><i id="percentage"></i> %</span></br>
+<span><b>Last Viewed:</b> <a href="${prev_section_url}" class="enter-course">${prev_section.display_name_with_default}</a></span></br>
+<span id="conclusion_text"></span>
+
+</br>
 
 <script type="text/javascript">
   $(document).ready(function() {
@@ -32,6 +39,22 @@ from django.utils.translation import ugettext as _
                 $("#earned_points").html(result.earned);
                 $("#short_description").html(result.short_description);
                 $("#course_title").html(result.title);
+                $("#percentage").html(result.percentage);
+                $("#course_image").attr("src", result.course_image);
+
+                if(result.percentage < parseFloat(1) ){
+                    $("#conclusion_text").html("Textcontainer 1");
+                }
+                else if(result.percentage >= parseFloat(1) && result.percentage <= parseFloat(49) ){
+                    $("#conclusion_text").html("Textcontainer 2");
+                }
+                else if(result.percentage >= parseFloat(50) && result.percentage <= parseFloat(84) ){
+                    $("#conclusion_text").html("Textcontainer 3");
+                }
+                else if(result.percentage >= parseFloat(85)){
+                    $("#conclusion_text").html("Textcontainer 4");
+                }
+
             },
             error: function() {
                 alert('Error: cannot connect to server');
