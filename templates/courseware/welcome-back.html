@@ -2,28 +2,47 @@
 from django.utils.translation import ugettext as _
 
 %>
+<div class="welcome-back">
+	<h3 id="conclusion_text"></h3>
+	<div class="course-info">
+		<div class="course-image"><img src="" id="course_image" width="300px"/></div>
+		<div class="course-description">
+			<h5 id="course_title"></h5>
+			<div id="short_description"></div>
+		</div>
+	</div>
 
-<h2>${chapter_module.display_name_with_default}</h2>
 
-<p>${_("You were most recently in {section_link}.  If you\'re done with that, choose another section on the left.").format(
-	    section_link=u'<a href="{url}">{section_name}</a>'.format(
+<div class="progress-info">
+	<h5 class="points-headline">Ihr Punktestand:</h5>
+	<div class="points">
+		<a href="/courses/course-v1:LYNX+01+01_2016/progress"><span id="earned_points"></span> | <span id="total_points"></span></a>
+	</div>
+
+	<p class="last-viewed">${_("Letzte angeschaute Lektion: {section_link}").format(
+	    section_link=u'<a href="{url}" class="current-lecture">{section_name}</a>'.format(
 	        url=prev_section_url,
 	        section_name=prev_section.display_name_with_default,
 	    )
     )}</p>
-
-</br>
-<span><img src="" id="course_image" height="300px" width="300px"/></span></br>
-<span><b>Course Title:</b> <i id="course_title"></i></span></br>
-<span><b>Short Description:</b> <i id="short_description"></i></span></br>
-<span><b>Total Points:</b> <i id="total_points"></i></span></br>
-<span><b>Earned Points:</b> <i id="earned_points"></i></span></br>
-<span><b>Percentage:</b><i id="percentage"></i> %</span></br>
-<span><b>Last Viewed:</b> <a href="${prev_section_url}" class="enter-course">${prev_section.display_name_with_default}</a></span></br>
-<span id="conclusion_text"></span>
-
-</br>
-
+<!--
+<p>
+	${_("You were most recently in {section_link}.  If you\'re done with that, choose another section on the left.").format(
+	    section_link=u'<a href="{url}">{section_name}</a>'.format(
+	        url=prev_section_url,
+	        section_name=prev_section.display_name_with_default,
+	    )
+    )}
+</p>
+   <h4>${chapter_module.display_name_with_default}</h4>
+-->
+    
+<!-- Last Viewed: -->
+<!-- <span> <a href="${prev_section_url}" class="btn btn-light next">${prev_section.display_name_with_default}</a></span>-->
+	<span> <a href="${prev_section_url}" class="resume">Training fortsetzen</a></span>
+<!-- <span><b>Percentage:</b><i id="percentage"></i> %</span> -->
+</div>
+</div>
 <script type="text/javascript">
   $(document).ready(function() {
 
@@ -43,16 +62,16 @@ from django.utils.translation import ugettext as _
                 $("#course_image").attr("src", result.course_image);
 
                 if(result.percentage < parseFloat(1) ){
-                    $("#conclusion_text").html("Textcontainer 1");
+                    $("#conclusion_text").html("Herzlich willkommen!");
                 }
                 else if(result.percentage >= parseFloat(1) && result.percentage <= parseFloat(49) ){
-                    $("#conclusion_text").html("Textcontainer 2");
+                    $("#conclusion_text").html("Willkommen zurück!");
                 }
                 else if(result.percentage >= parseFloat(50) && result.percentage <= parseFloat(84) ){
-                    $("#conclusion_text").html("Textcontainer 3");
+                    $("#conclusion_text").html("Willkommen zurück! Sie haben schon über die Hälfte geschafft!");
                 }
                 else if(result.percentage >= parseFloat(85)){
-                    $("#conclusion_text").html("Textcontainer 4");
+                    $("#conclusion_text").html("Herzlichen Glückwunsch! Sie haben den Kurs erfolgreich abgeschlossen!");
                 }
 
             },

@@ -8,7 +8,6 @@
 @import 'reset.less';
 @import 'global/main.less';
 
-
 body {
   background-color: #f0f0f0;
   background: linear-gradient(to right, white 0%,white 50%,#ffffff 50%,#f0f0f0 50%,#f0f0f0 100%); /* W3C */
@@ -253,11 +252,16 @@ h4 {
 	line-height: 1.3em;
 }
 h5 {
-	font-size: @font-size-h4;
+	font-size: @font-size-h5;
 	padding: 0 0 10px 0;
 	margin-top: 30px;
 }
-a, a:link {
+h6 {
+	font-size: @font-size-h6;
+	padding: 0 0 10px 0;
+	margin-top: 10px;
+}
+a, a:link, p a, p a:link, p a:visited {
 	color: @color-secondary;
 }
 a:visited, a:hover, a:focus, a:active {
@@ -374,6 +378,9 @@ div.course-wrapper {
 				border: none;
 				padding: 0;
 				margin: 0;
+				&.xblock-student_view-carousel {
+					padding: 15px;
+				}
 			}
 		}
 	}
@@ -409,19 +416,14 @@ div.course-wrapper {
 			color: @color-darkgrey;
 			line-height: @line-height-base !important;
 		}
-		h3 { 
+		h1, h2, h3 { 
 			font-family: @font-family-headings;
 			font-size: @font-size-h3;
 			font-weight: normal;
+			text-transform: none;
 			line-height: @line-height-headings;
 			color: @color-darkgrey;
-		//	color: #ff0000;
-		}
-		a, a:link {
-			color: @color-secondary;
-		}
-		a:hover {
-			color: @color-darkgrey;
+			//color: #ff0000;
 		}
 		h4 {
 			font-family: @font-family-headings;
@@ -432,6 +434,24 @@ div.course-wrapper {
 			border-top: 1px solid @color-lines;
 			padding: 25px 0 15px 0;
 			margin-top: 30px;
+		}
+		h5 {
+			font-family: @font-family-headings;
+			font-size: @font-size-h5;
+			padding: 0 0 10px 0;
+			margin-top: 30px;
+		}
+		h6 {
+			font-family: @font-family-headings;
+			font-size: @font-size-h6;
+			padding: 0 0 10px 0;
+			margin-top: 10px;
+		}
+		a, a:link {
+			color: @color-secondary;
+		}
+		a:hover {
+			color: @color-darkgrey;
 		}
 	}
 	&.xmodule_StaticTabModule {
@@ -493,7 +513,11 @@ div.course-wrapper {
 			padding: 0;
 			margin: 0;
 			vertical-align: top;
-			padding: 10px 10px 0px 15px;
+			padding: 6px 15px 5px 15px;
+			p {
+				margin: 0 !important;
+				padding: 0;
+			}
 		}
 		th, th strong {
 			color: @color-icons;
@@ -528,6 +552,172 @@ div.course-wrapper {
 			border: none;
 			margin: 0;
 			color: @color-darkgrey;
+		}
+	}
+	//XBlock Slideshow
+	&.xblock-student_view-carousel {
+		background: @color-lightgrey;
+		border: 1px solid @color-lines;
+		box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+		padding: 0 15px 10px 0;
+		img {
+			width: 60%;
+			height: auto;
+			float: left;
+			margin-right: 20px;
+		}
+		h5 {
+			margin: 0;
+		}
+		.carousel-nav {
+			a {
+				background: @color-icons;
+				border-bottom: 4px solid @color-icons-dark;
+				-webkit-border-radius: @default-border-radius;
+				-moz-border-radius: @default-border-radius;
+				border-radius: @default-border-radius;
+				color: @white;
+				text-transform: uppercase;
+				padding: 13px 12px 7px 12px;
+				margin: 0;
+				height: auto;
+				font-weight: 400;
+				font-size: @font-size-base;
+				font-family: @font-family-headings;
+				line-height: @font-size-base;
+				&:hover {
+					box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); 
+				}
+				&:focus {
+					box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 16px 0 rgba(0, 0, 0, 0.19);
+				}
+			}
+		}
+	}
+	//xBlock Quiz
+	&.xmodule_CapaModule {
+		background: @color-lightgreen;
+		box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+		border: 1px solid @color-lightgrey;
+		border-radius: @default-border-radius;
+		padding: 20px 20px 0 20px;
+		.problems-wrapper {
+			padding: 20px 20px 0 20px;
+			div.problem div>span {
+				margin: 0;
+			}
+			
+			.problem {
+				background: @white;
+				margin: 0 -20px;
+				padding: 20px 20px 0 20px;
+				.choicegroup {
+					label {
+						border: none;
+						width: auto;
+						&:hover {
+							border: none;
+						}
+						
+						&.choicegroup_correct {
+							border: none;
+							background: @color-secondary;
+							border-radius: 5px;
+							color: @white;
+							font-weight: bold;
+							&:after {
+								color: @white;
+							}
+						}
+						&.choicegroup_incorrect {
+							border: none;
+							background: @color-red;
+							border-radius: 5px;
+							color: @white;
+							font-weight: bold;
+							&:after {
+								color: @white;
+							}
+						}
+					}
+				}
+				.message {
+					background: @color-lightgrey;
+					margin: 0 -20px;
+					padding: 20px;
+						.hint-label {
+							color: @color-secondary;
+						}
+					.feedback-hint-incorrect  {
+						margin: 0;
+						.hint-label {
+							color: @color-red;
+						}
+					}
+					.feedback-hint-correct {
+						margin: 0;
+					}
+				}
+				.solution-span {
+					margin: 0;
+					padding: 0;
+					border: none;
+					box-shadow: none;
+					span {
+						background: @color-lightgrey;
+						border: none;
+						box-shadow: none;
+						margin: 0 -20px;
+						padding: 20px;
+					}
+				}
+				.action {
+					background: @color-lightgreen;
+					margin: 0 -20px;
+					padding: 20px;
+					button.check, button.reset {
+						float:left;
+						border: none;
+						background: @color-secondary;
+						border-bottom: 4px solid @color-secondary-dark;
+						-webkit-border-radius: @default-border-radius;
+						-moz-border-radius: @default-border-radius;
+						border-radius: @default-border-radius;
+						color: @white;
+						text-transform: uppercase;
+						padding: 13px 12px 7px 12px;
+						margin: 0 20px 0 0;
+						height: auto;
+						box-shadow: none;
+						font-weight: 400;
+						font-size: @font-size-base;
+						font-family: @font-family-headings;
+						line-height: @font-size-base;
+						letter-spacing: 0.3px;
+						&:hover {
+							box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+						}
+					}
+					button.reset {
+						background: @color-icons;
+						border-color: @color-icons-dark;
+					}
+					button.show {
+						background: none;
+						text-transform: none;
+						padding: 0;
+						margin: 0;
+						border: none;
+						color: @color-secondary;
+						box-shadow: none;
+						text-shadow: none;
+						font-weight: normal;
+					}
+				}
+				.indicator-container .status.unanswered:after {
+					display: none;
+				}
+			}
 		}
 	}
 	// edx xBlock Discussion
@@ -586,6 +776,7 @@ div.course-wrapper {
 	}
 
 }
+// Preview/Next Lecture Buttons
 .xmodule_display.xmodule_SequenceModule {
 		nav.sequence-bottom {
 			width: auto;
@@ -825,8 +1016,96 @@ input[type="submit"], .forum-new-post-form .submit {
 	}
 
 }
+//Welcome Back Site
+.welcome-back {
+	.course-info {
+		display: table;
+		margin: 25px 0 40px 0;
+	}
+ 	.course-image {
+		float: left;
+		margin: 0 20px 0 0;
+		width: 25%;
+	}
+	.progress-info {
+		clear: both;
+		margin: 20px 0 0 0;
+		background: @color-lightgreen;
+		text-align: center;
+		color: @color-darkgrey;
+		padding: 40px;
+		p {
+			margin: 0;
+			padding: 0;
+		}
+	}
+	.course-description {
+		width: 70%;
+		float:left;
+	}
+	#course_title {
+		margin: 0;
+	}
+	#short_description {
+		margin: 0;
+	}
+	h5.points-headline {
+		color: @color-darkgrey;
+		text-align: center;
+		margin: 0 0 20px 0;
+		padding: 0;
+		font-family: @font-family-base;
+		font-size: @font-size-base;
+		font-weight: bold;
+	}
+	.points {
+		text-align: center;
+		font-size: 25px;
+		margin: 0 0 25px 0;
+		a {
+			background: @color-secondary;
+			border-radius: 5px;
+			padding: 10px 15px 10px 15px;
+			color: @color-darkgrey;
+		}
+		#earned_points {
+    		color: @white;
+    	}
+    	#total_points {
+    		color: @color-darkgrey;
+    	}
+	}
+	#conclusion_text {
+		//	font-weight: bold;
+		font-family: @font-family-headings;
+		font-size: @font-size-h3;
+	}
+	.last-viewed {
+		text-align: center;
+		margin: 30px 0 30px 0;
+	}
+	p a.current-lecture {
+		font-weight: bold;
+		color: @color-darkgrey;
+	}
 
-
+	.resume {
+		background: #ffe126;
+    	font-family: @font-family-headings;
+    	line-height: 1em;
+    	border: none;
+    	border-bottom: 4px solid #debd10;
+    	border-radius: 2px;
+    	color: @color-darkgrey;
+    	text-transform: uppercase;
+    	padding: 13px 12px 7px;
+    	display: table-cell;
+    	&:hover {
+			box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+			border-bottom: 4px solid #debd10;
+    	}
+	}
+}
 //About site - content wrapper
 .static_tab_wrapper {
 	background-color: @white;
