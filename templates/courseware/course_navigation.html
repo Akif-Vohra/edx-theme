@@ -103,6 +103,12 @@ include_special_exams = settings.FEATURES.get('ENABLE_SPECIAL_EXAMS', False) and
           </li>
       % endfor
       <%block name="extratabs" />
+        <li>
+            Your Progress:
+            <span id="custom_progress">
+                <span id="nav_earned_points"></span>/<span id="nav_total_points"></span>(<span id="nav_percentage"></span>%)
+            </span>
+        </li>
     </ol>
   </div>
 </nav>
@@ -182,3 +188,40 @@ include_special_exams = settings.FEATURES.get('ENABLE_SPECIAL_EXAMS', False) and
 }());
 </script>
 % endif
+
+
+<!---->
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    all_problems = $('.xblock-student_view-problem');
+    get_progress_data();
+
+    for(problem_index in all_problems){
+        Logger.listen('problem_graded', $(all_problems[problem_index]).attr('data-usage-id'), get_progress_data);
+    }
+  });
+
+  function get_progress_data(eventType, data, element){
+
+    $.ajax({
+            url: '/custom_api/courses-data/${course.id}',
+            type: 'GET',
+            contentType: 'application/json',
+            xhrFields: {
+				withCredentials: true
+			},
+            success: function(result) {
+                $("#nav_total_points").html(result.total);
+                $("#nav_earned_points").html(result.earned);
+                $("#nav_percentage").html(Math.round(result.percentage * 100) / 100);
+            },
+            error: function() {
+                alert('Error: cannot connect to server');
+            }
+        });
+
+  }
+
+</script>
