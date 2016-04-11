@@ -1,3 +1,4 @@
 <%! from django.utils.translation import ugettext as _ %>
-
+<span class="c000000" style="color:#252729">
 ${_("Activate Your {platform_name} Account").format(platform_name=settings.PLATFORM_NAME)}
+</span>

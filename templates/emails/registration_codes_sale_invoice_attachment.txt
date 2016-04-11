@@ -1,42 +1,57 @@
 <%! from django.utils.translation import ugettext as _ %>
+<span class="c000000" style="color:#252729">
 ${_("INVOICE")}
-
+<br>
 ———————————————————————————————————————————
-
+<br>
 ${corp_address}
-
+<br>
 ${_("Date: {date}").format(date=date)}
+<br>
 ${_("Invoice No: {invoice_number}").format(invoice_number=invoice.id)}
+<br>
 ${_("Terms: Due Upon Receipt")}
+<br>
 ${_("Due Date: {date}").format(date=date)}
-
+<br>
+<br>
 ${_("Bill to:")}
+<br>
 ${invoice.company_name}
+<br>
 ${invoice.address_line_1}
+<br>
 % if invoice.address_line_2:
 ${invoice.address_line_2}
 % endif
+<br>
 % if invoice.address_line_3:
 ${invoice.address_line_3}
 % endif
+<br>
 ${invoice.city}, ${invoice.state}, ${invoice.zip}
+<br>
 ${invoice.country}
+<br>
 ${_("Customer Reference Number: {reference_number}").format(reference_number=invoice.customer_reference_number if invoice.customer_reference_number else "")}
-
+<br>
                                         ${_("Balance Due: {currency_symbol}{sale_price}").format(currency_symbol=currency_symbol, sale_price=sale_price)}
-
+<br>
 ———————————————————————————————————————————
-
+<br>
 ${_("Course: {course_name}").format(course_name=course.display_name)}
+<br>
  ${_("Price:        {currency_symbol}{course_price}  Quantity:      {quantity}  Sub-Total:    {currency_symbol}{sub_total}  Discount:  {currency_symbol}{discount}").format(course_price=course_price, quantity=quantity, sub_total=sub_total, discount=discount, currency_symbol=currency_symbol)}
+<br>
 ${_("Total:      {currency_symbol}{sale_price}").format(sale_price=sale_price, currency_symbol=currency_symbol)}
-
+<br>
 ———————————————————————————————————————————
-
+<br>
 ${_("Payment Instructions")}
-
+<br>
 ${payment_instructions}
-
+<br>
 ${_("If we do not receive payment, the learner enrollments that use these codes will be canceled and learners will not be able to access course materials. All purchases are final. For more information, see the {site_name} cancellation policy.").format(site_name=site_name)}
-
+<br>
 ${_("For payment questions, contact {contact_email}").format(contact_email=contact_email)}
+</span>

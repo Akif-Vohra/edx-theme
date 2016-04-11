@@ -1,2 +1,4 @@
 <%! from django.utils.translation import ugettext as _ %>
+<span class="c000000" style="color:#252729">
 ${_("Request to change {platform_name} account e-mail").format(platform_name=settings.PLATFORM_NAME)}
+</span>

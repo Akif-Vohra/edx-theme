@@ -1,4 +1,5 @@
 <%! from django.utils.translation import ugettext as _ %>
+<span class="c000000" style="color:#252729">
 <p>
 ${_("Hi {name},").format(name=recipient_name)}
 </p>
@@ -101,3 +102,4 @@ ${_("(5) Course materials will not be available until the course start date.")}<
 ## Translators: please translate the text inside [[ ]]. This is meant as a template for course teams to use. Please also keep the <p> and </p> HTML tags in place.
 ${_("<p>Sincerely,</p>"
 "<p>[[Your Signature]]</p>")}
+</span>
