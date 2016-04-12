@@ -1,8 +1,9 @@
 <%namespace file="../main.html" import="stanford_theme_enabled" />
 <%! from django.utils.translation import ugettext as _ %>
-<span class="c000000" style="color:#252729">
+<span class="c000000" style="color:#252729;line-height: 27px;font-size: 17px;">
 
 ${_("Thank you for signing up for {platform_name}.").format(platform_name=settings.PLATFORM_NAME)}
+<br/>
 <br/>
 ${_("Change your life and start learning today by activating your "
     "{platform_name} account. Click on the link below or copy and "
@@ -10,17 +11,20 @@ ${_("Change your life and start learning today by activating your "
       platform_name=settings.PLATFORM_NAME
     )}
 <br/>
+<br/>
 % if is_secure:
   https://${ site }/activate/${ key }
 % else:
   http://${ site }/activate/${ key }
 % endif
 <br/>
+<br/>
 
 % if settings.FEATURES.get('IS_EDX_DOMAIN'):
 ${_("After you activate your account, you can sign up for "
     "and take any of the hundreds of courses {platform_name} offers."
   ).format(platform_name=settings.PLATFORM_NAME)}
+<br/>
 <br/>
 ${_("If you need help, please use our web form at "
     "{contact_us_url} or email {info_email_address}."
@@ -29,11 +33,14 @@ ${_("If you need help, please use our web form at "
     info_email_address=settings.CONTACT_EMAIL
   )}
 <br/>
+<br/>
 ${_("We hope you enjoy learning with {platform_name}!").format(
     platform_name=settings.PLATFORM_NAME
 )}
 <br/>
+<br/>
 ${_("The {platform_name} Team").format(platform_name=settings.PLATFORM_NAME)}
+<br/>
 <br/>
 ${_("This email was automatically sent by {site_name} because someone "
       "attempted to create an {platform_name} account using this email address."
