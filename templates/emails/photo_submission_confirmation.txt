@@ -1,12 +1,16 @@
 <%! from django.utils.translation import ugettext as _ %>
-<span class="c000000" style="color:#252729">
+<span class="c000000" style="color:#252729;line-height: 25px;font-size: 16px;">
 ${_("Hi {full_name},").format(full_name=full_name)}
+<br>
 <br>
 ${_("Thanks for submitting your photos!")}
 <br>
+<br>
 ${_("We've received your information and the verification process has begun. You can check the status of the verification process on your dashboard.")}
 <br>
+<br>
 ${_("Thank you,")}
+<br>
 <br>
 ${_("The {platform_name} team").format(platform_name=platform_name)}
 </span>

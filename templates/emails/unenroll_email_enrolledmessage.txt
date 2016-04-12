@@ -1,5 +1,5 @@
 <%! from django.utils.translation import ugettext as _ %>
-<span class="c000000" style="color:#252729">
+<span class="c000000" style="color:#252729;line-height: 25px;font-size: 16px;">
 ${_("Dear {full_name}").format(full_name=full_name)}
 <br>
 ${_("You have been un-enrolled in {course_name} at {site_name} by a member "
@@ -8,9 +8,12 @@ ${_("You have been un-enrolled in {course_name} at {site_name} by a member "
     	course_name=display_name or course.display_name_with_default, site_name=site_name
     )}
 <br>
+<br>
 ${_("Your other courses have not been affected.")}
 <br>
+<br>
 ----
+<br>
 <br>
 ${_("This email was automatically sent from {site_name} to "
 	"{full_name}").format(

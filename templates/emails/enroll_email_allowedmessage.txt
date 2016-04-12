@@ -1,24 +1,24 @@
 <%! from django.utils.translation import ugettext as _ %>
-<span class="c000000" style="color:#252729">
+<span class="c000000" style="color:#252729;line-height: 25px;font-size: 16px;">
 ${_("Dear student,")}
-<br>
+<br><br>
 ${_("You have been invited to join {course_name} at {site_name} by a "
 	"member of the course staff.").format(
 		course_name=display_name or course.display_name_with_default,
 		site_name=site_name
 	)}
-<br>
+<br><br>
 % if is_shib_course:
 % if auto_enroll:
 
 ${_("To access the course visit {course_url} and login.").format(course_url=course_url)}
 % elif course_about_url is not None:
-<br>
+<br><br>
 ${_("To access the course visit {course_about_url} and register for the course.").format(
 		course_about_url=course_about_url)}
 % endif
 % else:
-<br>
+<br><br>
 ${_("To finish your registration, please visit {registration_url} and fill "
 	"out the registration form making sure to use {email_address} in the E-mail field.").format(
 		registration_url=registration_url,
@@ -36,7 +36,7 @@ ${_("Once you have registered and activated your account, visit {course_about_ur
 ${_("You can then enroll in {course_name}.").format(course_name=display_name or course.display_name_with_default)}
 % endif
 % endif
-<br>
+<br><br>
 ----
 ${_("This email was automatically sent from {site_name} to "
 	"{email_address}").format(

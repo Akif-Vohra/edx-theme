@@ -1,5 +1,5 @@
 <%! from django.utils.translation import ugettext as _ %>
-<span class="c000000" style="color:#252729">
+<span class="c000000" style="color:#252729;line-height: 25px;font-size: 16px;">
 <p>
 ${_("Hi {name},").format(name=recipient_name)}
 </p>
