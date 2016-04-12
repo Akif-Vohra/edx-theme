@@ -54,24 +54,29 @@ from django.utils.translation import ugettext as _
 				withCredentials: true
 			},
             success: function(result) {
-                $("#total_points").html(result.total);
-                $("#earned_points").html(result.earned);
-                $("#short_description").html(result.short_description);
-                $("#course_title").html(result.title);
-                $("#percentage").html(result.percentage);
-                $("#course_image").attr("src", result.course_image);
+                if(result.started){
+                    $("#total_points").html(result.total);
+                    $("#earned_points").html(result.earned);
+                    $("#short_description").html(result.short_description);
+                    $("#course_title").html(result.title);
+                    $("#percentage").html(result.percentage);
+                    $("#course_image").attr("src", result.course_image);
 
-                if(result.percentage < parseFloat(1) ){
-                    $("#conclusion_text").html("Herzlich willkommen!");
+                    if(result.percentage < parseFloat(1) ){
+                        $("#conclusion_text").html("Herzlich willkommen!");
+                    }
+                    else if(result.percentage >= parseFloat(1) && result.percentage <= parseFloat(49) ){
+                        $("#conclusion_text").html("Willkommen zurück!");
+                    }
+                    else if(result.percentage >= parseFloat(50) && result.percentage <= parseFloat(84) ){
+                        $("#conclusion_text").html("Willkommen zurück! Sie haben schon über die Hälfte geschafft!");
+                    }
+                    else if(result.percentage >= parseFloat(85)){
+                        $("#conclusion_text").html("Herzlichen Glückwunsch! Sie haben den Kurs erfolgreich abgeschlossen!");
+                    }
                 }
-                else if(result.percentage >= parseFloat(1) && result.percentage <= parseFloat(49) ){
-                    $("#conclusion_text").html("Willkommen zurück!");
-                }
-                else if(result.percentage >= parseFloat(50) && result.percentage <= parseFloat(84) ){
-                    $("#conclusion_text").html("Willkommen zurück! Sie haben schon über die Hälfte geschafft!");
-                }
-                else if(result.percentage >= parseFloat(85)){
-                    $("#conclusion_text").html("Herzlichen Glückwunsch! Sie haben den Kurs erfolgreich abgeschlossen!");
+                else{
+                    console.log("course not started yet");
                 }
 
             },
