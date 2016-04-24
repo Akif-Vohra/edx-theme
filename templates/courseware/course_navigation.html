@@ -103,13 +103,18 @@ include_special_exams = settings.FEATURES.get('ENABLE_SPECIAL_EXAMS', False) and
           </li>
       % endfor
       <%block name="extratabs" />
-        <li id="nav_progress_custom" style="visibility:hidden">
-            Your Progress:
-            <span id="custom_progress">
-                <span id="nav_earned_points"></span>/<span id="nav_total_points"></span>(<span id="nav_percentage"></span>%)
-            </span>
-        </li>
     </ol>
+    <!-- Feedback-Button for Testing -->  
+	<div class="feedback"><a href="https://docs.google.com/forms/d/1boYzskuirreAr-Bb2-nVCfljEJYQ84vMz_SFh_JaTkY/viewform" target="_blank">Feedback</a></div>
+
+    <div id="nav_progress_custom" title="Punktestand">
+    	<a href="/courses/course-v1:LYNX+01+01_2016/progress">
+    		<span id="custom_progress">
+    			<span id="nav_earned_points"></span> / <span id="nav_total_points"></span>
+    			<!--(<span id="nav_percentage"></span>%)-->
+    		</span>
+    	</a>
+   	</div>
   </div>
 </nav>
 %endif
@@ -214,7 +219,6 @@ include_special_exams = settings.FEATURES.get('ENABLE_SPECIAL_EXAMS', False) and
 			},
             success: function(result) {
             if(result.started){
-                $('#nav_progress_custom').attr('style').remove();
                 $("#nav_total_points").html(result.total);
                 $("#nav_earned_points").html(result.earned);
                 $("#nav_percentage").html(Math.round(result.percentage * 100) / 100);

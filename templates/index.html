@@ -30,13 +30,15 @@ from microsite_configuration import microsite
               <h2>${_("For anyone, anywhere, anytime")}</h2>
             % else:
               ## Translators: 'Open edX' is a brand, please keep this untranslated. See http://openedx.org for more information.
-              <h1>${_("Welcome to Open edX!")}</h1>
+              <h1>Willkommen beim LYNX Online-Training!</h1>
+              <!--<h1>${_("Welcome to Open edX!")}</h1>-->
               ## Translators: 'Open edX' is a brand, please keep this untranslated. See http://openedx.org for more information.
-              <h2>${_("It works! This is the default homepage for this Open edX instance.")}</h2>
+              <!--<h2>${_("It works! This is the default homepage for this Open edX instance.")}</h2>-->
             % endif
           % endif
         </hgroup>
         % if settings.FEATURES.get('ENABLE_COURSE_DISCOVERY'):
+        <!--
           <div class="course-search">
             <form method="get" action="/courses">
               <label><span class="sr">${_("Search for a course")}</span>
@@ -47,6 +49,7 @@ from microsite_configuration import microsite
               </button>
             </form>
           </div>
+          -->
         % endif
 
       </div>

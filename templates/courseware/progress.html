@@ -35,6 +35,7 @@ from django.utils.http import urlquote_plus
 <%include file="/courseware/course_navigation.html" args="active_page='progress'" />
 
 <div class="container">
+  <div class="progress-wrapper">
   <div class="profile-wrapper">
 
     <div class="course-info" id="course-info-progress" aria-label="${_('Course Progress')}">
@@ -45,7 +46,8 @@ from django.utils.http import urlquote_plus
       % endif
 
       <header class="progress-certificates">
-        <h1 class="progress-certificates-title">${_("Course Progress for Student '{username}' ({email})").format(username=student.username, email=student.email) | h}</h1>
+        <h3 class="progress-certificates-title">${_("Course Progress").format(username=student.username, email=student.email) | h}</h3>
+        <h5 class="progress-certificates-title">${_("for Student '{username}' ({email})").format(username=student.username, email=student.email) | h}</h5>
       </header>
 
       %if show_generate_cert_btn:
@@ -97,7 +99,18 @@ from django.utils.http import urlquote_plus
 
       %if not course.disable_progress_graph:
         <div class="grade-detail-graph" id="grade-detail-graph" aria-hidden="true"></div>
+        <!-- Legend not needed, if each category has the same color 
+        <div class="legend">
+        	<ul>
+        		<li><div class="color-box quiz"></div> Quiz</li>
+        		<li><div class="color-box check"></div> Wissens-Check</li>
+        		<li><div class="color-box exercise"></div> Praxisübung</li>
+        	</ol>
+        </div>
+        -->
       %endif
+
+	
 
       % if credit_course_requirements:
         <section class="credit-eligibility">
@@ -158,12 +171,12 @@ from django.utils.http import urlquote_plus
             </div>
         </section>
       %endif
-
+	
       <div class="chapters">
         %for chapter in courseware_summary:
         %if not chapter['display_name'] == "hidden":
         <section>
-          <h2>${ chapter['display_name'] | h}</h2>
+          <h4>${ chapter['display_name'] | h}</h4>
 
           <div class="sections">
             %for section in chapter['sections']:
@@ -174,7 +187,7 @@ from django.utils.http import urlquote_plus
               percentageString = "{0:.0%}".format( float(earned)/total) if earned > 0 and total > 0 else ""
               %>
 
-              <h3><a href="${reverse('courseware_section', kwargs=dict(course_id=course.id.to_deprecated_string(), chapter=chapter['url_name'], section=section['url_name'])) | h}">
+              <h5><a href="${reverse('courseware_section', kwargs=dict(course_id=course.id.to_deprecated_string(), chapter=chapter['url_name'], section=section['url_name'])) | h}">
                 ${ section['display_name'] | h}
                 %if total > 0 or earned > 0:
                   <span class="sr">
@@ -183,11 +196,13 @@ from django.utils.http import urlquote_plus
                 %endif
                 </a>
                 %if total > 0 or earned > 0:
-                  <span> ${"({0:.3n}/{1:.3n}) {2}".format( float(earned), float(total), percentageString ) | h}</span>
+                  <span class="points-chapter"> ${"({0:.3n}/{1:.3n}) {2}".format( float(earned), float(total), percentageString ) | h}</span>
                 %endif
-              </h3>
+              </h5>
+              <!--
               <p>
                 ${section['format'] | h}
+				
 
                 %if section.get('due') is not None:
                   <%
@@ -198,18 +213,21 @@ from django.utils.http import urlquote_plus
                   ${due_date | h}
                   </em>
                 %endif
+				               
               </p>
+              -->
 
               <div class="scores">
+              	
                 %if len(section['scores']) > 0:
-                  <h3> ${ _("Problem Scores: ") if section['graded'] else _("Practice Scores: ")} </h3>
+                  <div class="score-description"><span class="scores-type">${section['format'] | h}</span> ${ _("Problem Scores: ") if section['graded'] else _("Practice Scores: ")} </div>
                   <ol>
                     %for score in section['scores']:
-                    <li>${"{0:.3n}/{1:.3n}".format(float(score.earned),float(score.possible)) | h}</li>
+                    <li>${"{0:.3n} / {1:.3n}".format(float(score.earned),float(score.possible)) | h}</li>
                     %endfor
                   </ol>
                 %else:
-                  <h3 class="no-scores"> ${_("No problem scores in this section")} </h3>
+                  <div class="score-description no-scores"> ${_("No problem scores in this section")} </div>
                 %endif
               </div>
 
@@ -224,5 +242,6 @@ from django.utils.http import urlquote_plus
 
     </div>
   </div>
+</div>
 </div>
 

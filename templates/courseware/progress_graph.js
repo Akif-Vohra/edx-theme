@@ -20,9 +20,10 @@ $(function () {
   }
 
   /* -------------------------------- Grade detail bars -------------------------------- */
-    
+  /* Original edx-Colors:  colors = ["#b72121", "#600101", "#666666", "#333333"] = ["Quiz", "Wissenscheck", "Praxisübung", "?"]
+  /* LYNX Colors: */  
   <%
-  colors = ["#b72121", "#600101", "#666666", "#333333"]
+  colors = ["#00a651", "#00a651", "#00a651", "#333333"]
   categories = {}
 
   tickIndex = 1
