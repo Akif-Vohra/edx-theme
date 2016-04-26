@@ -231,6 +231,7 @@ body, body.view-in-course, body.view-passwordreset {
 						border-radius: 0;
 						top: 49px;
 						padding: 0;
+						z-index: 10000;
 						li {
 							padding: 0;
 							a {
@@ -419,7 +420,7 @@ div.course-wrapper {
 		padding: 2.5em 2.5em 0 10px;
 		margin: 0;
 		border-right: 1px solid @color-lines;
-		position: absolute;
+		min-height: 720px;
 		.vert-mod {
 			&>div ul {
 				margin: 0;
@@ -762,15 +763,20 @@ div.course-wrapper {
 		.slideshow-image {
 			width: 70%;
 			float: left;
-			padding: 65px 10px 10px;
+			padding: 10px;
 		}
 		.slideshow-text {
 			width: 30%;
 			float: left;
-			padding: 65px 10px 10px 0;
+			padding: 10px 10px 10px 0;
+			font-size: 13px;
+			line-height: 1.5;
 			
 			p:first-child {
 				display:none;
+			}
+			ul li {
+				padding-left: 23px;
 			}
 		}
 		img {
@@ -796,7 +802,8 @@ div.course-wrapper {
 			margin: 0;
 			height: 45px;
 			background: @white;
-			position: absolute;
+			border-top: 1px solid @color-lines;
+			//position: absolute;
 			
 			a {
 			/*
@@ -1284,7 +1291,31 @@ div.course-wrapper {
 			:-ms-input-placeholder {  
    				color: @color-mediumgrey;  
 			}
-			.new-post-btn, .submit, .cancel {
+			.post-type-input:checked + .post-type-label {
+				border: 1px solid @color-secondary;	
+			}
+			.post-type-label {
+				background: none;
+				border: none;
+				box-shadow: none;
+				text-transform: none;
+				font-family: @font-family-base;
+				i {
+					color: @color-icons;
+					padding-right: 5px;
+				}
+				&:hover {
+					color: @color-secondary;
+					-webkit-font-smoothing: none;
+					-moz-osx-font-smoothing: none;
+				}
+			}
+			.field-label-text {
+				text-transform: none;
+				font-size: @font-size-base;
+				
+			}
+			.submit, .cancel {
 				border: none;
 				background: @color-secondary;
 				border-bottom: 4px solid @color-secondary-dark;
@@ -1302,9 +1333,6 @@ div.course-wrapper {
 				font-family: @font-family-headings;
 				line-height: @font-size-base;
 				letter-spacing: 0.3px;
-				.new-post-icon {
-					display: none;
-				}
 				&:hover {
 					box-shadow: @box-shadow-hover;
 				}
@@ -1312,9 +1340,35 @@ div.course-wrapper {
 					box-shadow: @box-shadow-focus;
 				}
 			}
+			.new-post-btn {
+				background: none;
+				border: none;
+				text-transform: none;
+				color: @color-secondary;
+				font-size: @font-size-base;
+				box-shadow: none;
+				float: none;
+				margin-left: 25px;
+				padding: 0;
+				height: auto;
+				line-height: @line-height-base;
+				position: relative;
+				top: 1px;
+				&:hover {
+					color: @color-darkgrey
+				}
+				.new-post-icon {
+					display: none;
+				}
+			}
+			.discussion-show {
+				float: left;		
+			}
 			.cancel {
 				background: @color-icons;
 				border-bottom: 4px solid @color-icons-dark;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
 			}
 			.post-option {
 				border: none;
@@ -1327,6 +1381,65 @@ div.course-wrapper {
 			}
 			i {
 				margin: 0;
+			}
+			.posted-details {
+				font-size: @font-size-base;
+				color: @color-icons;
+				font-weight: 400;
+				font-style: italic;
+			}
+			ul.response-actions-list li, ul.post-actions-list li {
+				background: none;
+			}
+	
+			.discussion {
+				.discussion-article {
+					background: none;
+					border: 0;
+					padding: 0;
+					.forum-thread-main-wrapper {
+						background: none;
+						border: none;
+						box-shadow: none;
+						.discussion-post {
+							background: none;
+							padding: 20px 0;
+							border-radius: 0;
+							h1.post-title {
+								font-family: @font-family-headings;
+								font-size: @font-size-h4;
+								color: @color-secondary;
+							}
+							.post-context {
+								background: none;
+								font-style: italic;
+								padding: 0;
+							}
+						}
+					}
+
+					.post-tools {
+						background: none;
+						border: none;
+						box-shadow: none;
+						a {
+							padding: 0;
+						}
+						.icon {
+							color: @color-secondary;
+						}
+					}
+					.add-response .add-response-btn {
+						background: @color-secondary;
+						border: none;
+						width: auto;
+						font-family: @font-family-headings;
+						color: @white;
+						text-transform: uppercase;
+						box-shadow: none;
+					}
+				}
+				
 			}
 		}
 	}
@@ -1344,7 +1457,7 @@ div.course-wrapper {
 				padding: 0;
 				background: none;
 				border: none;
-				font-size: 1.3em;
+				font-size: 1.5em;
 				font-weight: normal;
 				&:hover, &:focus, &:active {
 					color: @color-secondary-dark;
@@ -1535,7 +1648,12 @@ input[type="submit"]:hover, .forum-new-post-form .submit:hover, .login-register 
 			margin: 0 25px 0 0;
 		}
 	}
-	
+	.course-staff, .faq {
+		h3 {
+			font-family: @font-family-headings;
+			font-size: @font-size-h4;
+		}
+	}
 	.course-sidebar {
 		background: @color-lightgrey;
 		padding: 30px;
@@ -1798,6 +1916,9 @@ section.about {
 section.container {
 	&.updates-wrapper {
 		background: none;
+		.info-wrapper {
+			background: @white;
+		}
 	}
 }
 div.info-wrapper {
@@ -1867,7 +1988,7 @@ section.container {
 .progress-wrapper {
 	width: 100%; 
 	height: 100%; 
-	background: @white;
+	background: @white !important;
 }
 .progress {
 	height: auto;
@@ -1956,6 +2077,12 @@ section.container {
 			}
 			.points-chapter {
 				font-weight: normal;
+			}
+			.completed {
+				display: inline;
+				i {
+					color: @color-secondary;
+				}
 			}
 		}
 
@@ -2096,25 +2223,27 @@ section.container.dashboard {
 							padding: 0;
 							margin: 0;
 							width: 55%;
-							a {
+							
+							a, span {
 								font-family: @font-family-headings;
 								font-size: @font-size-h4;
 								padding: 0;
 								margin: 0;
 								line-height: 1.3em;
+								color: @color-secondary;
 							}
 						}
 						.enter-course {
-							background: @color-tertiary;
+							background: @color-secondary;
 							font-family: @font-family-headings;
 							font-size: @font-size-base;
 							line-height: 1em;
 							border: none;
-							border-bottom: 4px solid @color-tertiary-dark;
+							border-bottom: 4px solid @color-secondary-dark;
 							-webkit-border-radius: @default-border-radius;
 							-moz-border-radius: @default-border-radius;
 							border-radius: @default-border-radius;
-							color: @color-darkgrey;
+							color: @white;
 							text-transform: uppercase;
 							padding: 13px 12px 7px 12px;
 							&:hover {
@@ -2133,11 +2262,11 @@ section.container.dashboard {
 		}
 		.wrapper-header-courses {
 			border: none;
-			margin: 0 0 40px 0;
+			margin: 20px 0 40px 0;
 			.header-courses {
 //		h1, h2, h3, h4, h5 {
-			font-family: @font-family-headings;
-			font-size: @font-size-h3;
+				font-family: @font-family-headings;
+				font-size: @font-size-h3;
 //		}
 			}
 		}
@@ -2162,6 +2291,13 @@ section.container.dashboard {
 		color: @white;
 	}
 }
+
+///////////////////////////////////////////////////////////////////////////////////////
+//Account settings page
+.account-wrapper {
+	background: @white;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////
 // Course Search Page (logged in)
 .find-courses .courses-container {
@@ -2364,6 +2500,11 @@ section#contact-bar .contactbar-item {
     float: left;
     color: @white;
     padding: 0;
+    i.home {
+    	color: @white;
+    	font-size: 42px;
+    	display: block;
+    }
 }
 section#contact-bar .contactbar-item img {
     margin-right: 17px;
@@ -2468,7 +2609,6 @@ footer #footer-middle .dropdown ul {
     position: absolute;
     top: 43px;
     left: -118px;
-    z-index: 1000;
     display: none;
     float: left;
     min-width: 160px;
@@ -2543,3 +2683,6 @@ footer #footer-bottom {
 
 
 /* Ende Style Marketing-Website */
+.courses-container .courses .course .course-image .cover-image .learn-more {
+	z-index: 100;
+}
