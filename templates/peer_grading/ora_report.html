@@ -1,0 +1,30 @@
+<p>Hello, ${user.username}</p>
+
+<br>
+
+<p> Here are statistics for course : ${course}</p>
+
+<br>
+
+<div class="staff-info__status ui-staff__content__section">
+    <table class="staff-info__status__table">
+
+        <caption class="title">Learner Progress</caption>
+
+        <thead>
+        <tr>
+            <th abbr="Step" scope="col">Problem Step</th>
+            <th abbr="# of Learners" scope="col">Active Learners in Step</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        %for item in status_counts:
+            <tr>
+                <td class="label">${ item.get('status') }</td>
+                <td class="value">${ item.get('count') }</td>
+            </tr>
+        %endfor
+        </tbody>
+    </table>
+</div>
