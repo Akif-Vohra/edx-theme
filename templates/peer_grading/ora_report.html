@@ -1,16 +1,14 @@
 <p>Hello, ${user.username}</p>
 <br>
-<p> please visit this link to view and grade new task submissions for this assignment: </p>
+<p> there are new submissions to review in your course: ${course} </p>
+<br>
+<p>Please visit this link: </p>
 <br>
 <p>${courseware_url}</p>
 <br>
-<p>Here is a current statistic for your course: ${course}</p>
-<br>
+<p>Current Statistic for Learner Progress:</p>
 <div class="staff-info__status ui-staff__content__section">
     <table class="staff-info__status__table">
-
-        <caption class="title">Learner Progress</caption>
-
         <thead>
         <tr>
             <th abbr="Step" scope="col">Problem Step</th>
@@ -21,8 +19,8 @@
         <tbody>
         %for item in status_counts:
             <tr>
-                <td class="label">${ item.get('status') }</td>
-                <td class="value">${ item.get('count') }</td>
+                <td class="label" style="font-size:13px !important;" cellpadding="3px">${ item.get('status') }</td>
+                <td class="value" style="font-size:13px !important;" cellpadding="3px">${ item.get('count') }</td>
             </tr>
         %endfor
         </tbody>
