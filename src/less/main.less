@@ -1323,6 +1323,7 @@ div.course-wrapper {
 			}
 			//Staff area
 			.openassessment__staff-area {
+				margin: 0;
 				.submission__answer__display__content {
 					background: @color-lightgrey;
 					padding: 20px;
@@ -1344,6 +1345,55 @@ div.course-wrapper {
 						border: none;
 					
 					}
+				}
+				.wrapper--staff-toolbar {
+					padding: 10px;
+					margin: 0;
+					background: #2c2f36;
+					border-radius: @default-border-radius;
+					text-align: center;
+					.ui-staff__button {
+						background: none;
+						border-bottom: none;
+						color: @white;
+						font-size: 16px;
+						text-transform: none;
+						font-weight: bold;
+						border-radius: 0;
+						padding: 5px 10px 3px 10px;
+						box-shadow: none;
+						margin: 0;
+						&:before {
+							font-family: "FontAwesome";
+							content: "\f0da";
+							padding-right: 10px;
+
+						}
+						&.is--active {
+							color: #b62568;
+							&:before {
+								content: "\f0d7";
+							}
+							&:hover {
+								background: none;
+							}
+						}
+						&:hover {
+							color: #b62568;
+						}
+					}
+				}
+				.label {
+					font-size: @font-size-base;
+				}
+				.ui-staff__content__section, .student__answer__display__content, .staff-info__final__grade__score {
+					color: #f5f5f6;
+				}
+				.icon {
+					color: @white
+				}
+				table tr th, table tr td {
+					color: #f5f5f6;
 				}
 				.staff-assessment__assessment {
 					.question__answers {
