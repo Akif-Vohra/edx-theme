@@ -195,13 +195,20 @@ include_special_exams = settings.FEATURES.get('ENABLE_SPECIAL_EXAMS', False) and
 % endif
 
 
-<!---->
-
+<!-- Added by Jay Modi-->
 <script type="text/javascript">
   $(document).ready(function() {
 
     all_problems = $('.xblock-student_view-problem');
     get_progress_data();
+
+    var dis_course_id = $("#courseware-search-results").attr('data-course-id');
+    if($(".discussion-module").length){
+        $('.discussion-module').each(function(index1, obj) {
+            var discussion_id = $(this).attr('data-discussion-id');
+            get_discussion_count(index1, dis_course_id, discussion_id);
+        });
+    }
 
     for(problem_index in all_problems){
         Logger.listen('problem_graded', $(all_problems[problem_index]).attr('data-usage-id'), get_progress_data);
@@ -231,6 +238,32 @@ include_special_exams = settings.FEATURES.get('ENABLE_SPECIAL_EXAMS', False) and
                 alert('Error: cannot connect to server');
             }
         });
+
+  }
+
+  // Ajax call to get discussion data
+  function get_discussion_count(index, course_id, discussion_id){
+    $.ajax({
+            url: "/courses/"+course_id+"/discussion/forum/"+discussion_id,
+            type: 'GET',
+            contentType: 'application/json',
+            xhrFields: {
+				withCredentials: true
+			},
+			success: function(result) {
+			    var count_len = result.discussion_data.length;
+			    var dis_span = $(".discussion-module").eq(index).find(".discussion-show");
+			    if(count_len){
+                    $("<span class='discussion_count' style='color: #00a651; margin-left: 5px;'>("+count_len + " Kommentare)</span>").insertAfter(dis_span);
+			    }
+			    else{
+    			    $("<span class='discussion_count' style='color: #00a651; margin-left: 5px;'>(keine Kommentare)</span>").insertAfter(dis_span);
+			    }
+			},
+            error: function() {
+                alert('Error: Discussion block cannot connect to server');
+            }
+    });
 
   }
 
