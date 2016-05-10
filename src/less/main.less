@@ -56,11 +56,13 @@ body, body.view-in-course, body.view-passwordreset {
 	.wrapper-course-material {
 		border-bottom: 1px solid @color-mediumgrey;
 		background: @white;
+		
 		.course-material {
 			padding: 18px 10px 18px 0;
 			height: 60px;
 			ol.course-tabs {
 				float: left;
+				padding: 0;
 				li {
 					margin-right: 20px;
 					a {
@@ -110,6 +112,7 @@ body, body.view-in-course, body.view-passwordreset {
 		box-shadow: @box-shadow-hover;
 		background: #313436 url("../images/bg-topbar.png");
 		height: 64px;
+		z-index: 1000;
 		> nav {
 			position: relative;
 			&.nav-wrapper {
@@ -163,7 +166,7 @@ body, body.view-in-course, body.view-passwordreset {
 					padding: 0;
 					margin: 0 0 0 15px;
 					font-family: @font-family-headings;
-					letter-spacing: 0.3px;
+					letter-spacing: @letter-spacing-headings;
 					a {
 						color: @color-lightgrey;
 						text-transform: uppercase;
@@ -196,7 +199,7 @@ body, body.view-in-course, body.view-passwordreset {
 					padding: 0;
     				margin: 0 0 0 15px;
     				font-family: @font-family-headings;
-    				letter-spacing: .3px;
+    				letter-spacing: @letter-spacing-headings;
     				margin: 7px 0 0 0;
     				a {
     					color: @color-lightgrey;
@@ -232,7 +235,6 @@ body, body.view-in-course, body.view-passwordreset {
 						border-radius: 0;
 						top: 49px;
 						padding: 0;
-						z-index: 10000;
 						li {
 							padding: 0;
 							a {
@@ -733,7 +735,7 @@ div.course-wrapper {
 						font-size: @font-size-base;
 						font-family: @font-family-headings;
 						line-height: @font-size-base;
-						letter-spacing: 0.3px;
+						letter-spacing: @letter-spacing-headings;
 						&:hover {
 							box-shadow: @box-shadow-hover;
 						}
@@ -1273,7 +1275,7 @@ div.course-wrapper {
 									font-size: @font-size-base;
 									font-weight: 400;
 									line-height: @font-size-base;
-									letter-spacing: 0.3px;
+									letter-spacing: @letter-spacing-headings;
 									min-width: 0;
 									&:hover {
 										box-shadow: @box-shadow-hover !important;
@@ -1302,7 +1304,7 @@ div.course-wrapper {
 								font-size: @font-size-base;
 								font-weight: normal;
 								line-height: @font-size-base;
-								letter-spacing: 0.3px;
+								letter-spacing: @letter-spacing-headings;
 								min-width: 0;
 								.copy {
 									margin-right: 0;
@@ -1476,7 +1478,7 @@ div.course-wrapper {
 				font-size: @font-size-base;
 				font-family: @font-family-headings;
 				line-height: @font-size-base;
-				letter-spacing: 0.3px;
+				letter-spacing: @letter-spacing-headings;
 				&:hover {
 					box-shadow: @box-shadow-hover;
 				}
@@ -1507,6 +1509,9 @@ div.course-wrapper {
 			}
 			.discussion-show {
 				float: left;		
+			}
+			.discussion_count {
+				font-weight: bold;	
 			}
 			.cancel {
 				background: @color-icons;
@@ -1639,7 +1644,7 @@ div.course-wrapper {
 									font-size: @font-size-base;
 									font-family: @font-family-headings;
 									line-height: @font-size-base;
-									letter-spacing: 0.3px;
+									letter-spacing: @letter-spacing-headings;
 									&:hover {
 										box-shadow: @box-shadow-hover;
 									}
@@ -1742,7 +1747,7 @@ div.course-wrapper {
 								font-size: @font-size-base;
 								font-family: @font-family-headings;
 								line-height: @font-size-base;
-								letter-spacing: 0.3px;
+								letter-spacing: @letter-spacing-headings;
 								&:hover {
 									box-shadow: @box-shadow-hover;
 								}
@@ -1857,7 +1862,7 @@ input[type="submit"], .forum-new-post-form .submit, .login-register .action-prim
 	font-family: @font-family-headings;
 	font-size: 14px;
 	font-weight: 400;
-	letter-spacing: 0.3px;
+	letter-spacing: @letter-spacing-headings;
 	text-shadow: none;
 	transition: all 0.2s ease-out 0s;
 	color: @white;
@@ -1955,7 +1960,7 @@ input[type="submit"]:hover, .forum-new-post-form .submit:hover, .login-register 
 						text-transform: uppercase;
 						font-family: @font-family-headings;
 						font-size: 16px;
-						letter-spacing: 0.3px;
+						letter-spacing: @letter-spacing-headings;
 						text-shadow: none;
 						transition: all 0.2s ease-out 0s;
 						color: @color-primary;
@@ -2133,7 +2138,7 @@ input[type="submit"]:hover, .forum-new-post-form .submit:hover, .login-register 
 		font-size: @font-size-base;
 		font-family: @font-family-headings;
 		line-height: @font-size-base;
-		letter-spacing: 0.3px;
+		letter-spacing: @letter-spacing-headings;
 		&:hover {
 			box-shadow: @box-shadow-hover;
 		}
@@ -2194,6 +2199,27 @@ input[type="submit"]:hover, .forum-new-post-form .submit:hover, .login-register 
 				}
 			}
 		}
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////
+//User Account Page
+.wrapper-account-settings {
+	max-width: 1170px;
+	.wrapper-header {
+		.header-title {
+			font-family: @font-family-headings;
+			font-size: @font-size-h3;
+			color: @color-darkgrey;
+			line-height: @line-height-headings;
+		}
+		.account-settings-header-subtitle {
+			font-size: @font-size-base;
+			font-style: italic;
+		}
+	}
+	a {
+		color: @color-secondary;
 	}
 }
 
@@ -2504,6 +2530,46 @@ section.container {
 		}
 	}
 }
+///////////////////////////////////////////////////////////////////////////////////////
+//Discussions Page
+body.discussion .content-wrapper {
+	background: @white;
+	#discussion-container {
+		.label {
+			color: @color-darkgrey;
+			text-align: left;
+			padding: 0;
+			&.label-settings {
+				font-weight: normal;
+				font-style: italic;
+				text-transform: none;
+				font-size: @font-size-base;
+				padding: 10px 0;
+			}
+		}
+		.home-header {
+			border: none;
+			.label{
+			font-size: 30px;
+			}
+			.home-title {
+				color: @color-secondary;
+				font-family: @font-family-headings;
+				font-size: @font-size-h4;
+			}
+			
+		}
+		table.home-helpgrid {
+			font-style: italic;
+			.row-item {
+				.icon {
+					font-size: 15px;
+				}
+			}
+		}
+	}
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////
 // Home site (not logged in)
 .home {
@@ -2891,7 +2957,7 @@ section#email-settings-modal, section#unenroll-modal {
 		#passwordreset-form {
 			button {
 				font-weight: 400 !important;
-				letter-spacing: 0.3px !important;
+				letter-spacing: @letter-spacing-headings !important;
 				padding: 5px 0 0 0;
 				
 			}
@@ -2906,17 +2972,41 @@ section#email-settings-modal, section#unenroll-modal {
 	}
 }
 
-
-//// Back-Button on Imprint, Datenschutz, Disclaimer Page
-.back {
-	font-weight: bold;
+///////////////////////////////////////////////////////////////////////////////////////
+// Imprint, Datenschutz, Disclaimer Page
+.static-container {
+	max-width: 1170px;
+	padding: 40px 0;
+}
+.back-link {
 	color: @color-secondary !important;
+	font-family: @font-family-headings;
+    line-height: 1em;
+    padding: 0;
+    margin: 0 0 50px 0;
+    font-size: 1.3em;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: @letter-spacing-headings;
+    &:hover {
+    	color: @color-secondary-dark;
+    }
+    a:hover {
+    	text-decoration: none;
+    	color: @color-secondary-dark !important;
+    }
 	i {
 		color: @color-secondary;
 		font-size: 30px;
 		margin: 0;
+		padding: 0;
+		padding-bottom: 2px;
+		&:hover {
+		color: @color-secondary-dark;
+		}
 	}
 }
+
 ///////////////////////////////////////////////////////////////////////////////////////
 /* Style Marketing-Website Footer */
 footer, header, hgroup, main, menu, nav, section, summary {
@@ -2955,10 +3045,16 @@ section#advantages #advantage-content ul.checked {
     margin-top: 45px;
 }
 ul.checked.white li {
-    background: transparent url("../images/check-white.png") no-repeat scroll 0px 50%;
+    background: transparent url("../images/check-white-small.png") no-repeat scroll 0px 50%;
     color: #FFF;
 }
 
+ul.checked li {
+    background: transparent url("../images/check-white-small.png") no-repeat scroll 0px 50%;
+    list-style: outside none none;
+    margin: 0px 0px 15px;
+    padding-left: 35px;
+}
 .align-center {
     text-align: center;
 }
@@ -3182,11 +3278,11 @@ footer #footer-bottom {
 .feedback {
 	float: left;
 	a, a:link, a:focus, a:active {
-		background: @color-icons;
-		color: @white;
-		padding: 3px 8px;
-		font-weight: 600;
-		border-radius: @default-border-radius;
+		//background: @color-icons;
+		//color: @white;
+		//padding: 3px 8px;
+		//font-weight: 600;
+		//border-radius: @default-border-radius;
 		&:hover {
 			color: @white;
 			box-shadow: @box-shadow-hover;

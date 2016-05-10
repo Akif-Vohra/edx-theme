@@ -103,11 +103,12 @@ include_special_exams = settings.FEATURES.get('ENABLE_SPECIAL_EXAMS', False) and
           </li>
       % endfor
       <%block name="extratabs" />
+      <li><a href="https://docs.google.com/forms/d/1boYzskuirreAr-Bb2-nVCfljEJYQ84vMz_SFh_JaTkY/viewform" target="_blank">Feedback</a></li>
     </ol>
     <!-- Feedback-Button for Testing -->  
-	<div class="feedback"><a href="https://docs.google.com/forms/d/1boYzskuirreAr-Bb2-nVCfljEJYQ84vMz_SFh_JaTkY/viewform" target="_blank">Feedback</a></div>
-
-    <div id="nav_progress_custom" title="Punktestand">
+	<!--<div class="feedback"><a href="https://docs.google.com/forms/d/1boYzskuirreAr-Bb2-nVCfljEJYQ84vMz_SFh_JaTkY/viewform" target="_blank">Feedback</a></div>
+-->
+    <div id="nav_progress_custom" title="Punktestand">Ihr Punktestand: 
     	<a href="/courses/course-v1:LYNX+01+01_2016/progress">
     		<span id="custom_progress">
     			<span id="nav_earned_points"></span> / <span id="nav_total_points"></span>
@@ -244,7 +245,7 @@ include_special_exams = settings.FEATURES.get('ENABLE_SPECIAL_EXAMS', False) and
   // Ajax call to get discussion data
   function get_discussion_count(index, course_id, discussion_id){
     $.ajax({
-            url: "/courses/"+course_id+"/discussion/forum/"+discussion_id,
+            url: "/courses/"+course_id+"/discussion/forum/"+discussion_id+"/inline",
             type: 'GET',
             contentType: 'application/json',
             xhrFields: {
@@ -254,10 +255,10 @@ include_special_exams = settings.FEATURES.get('ENABLE_SPECIAL_EXAMS', False) and
 			    var count_len = result.discussion_data.length;
 			    var dis_span = $(".discussion-module").eq(index).find(".discussion-show");
 			    if(count_len){
-                    $("<span class='discussion_count' style='color: #00a651; margin-left: 5px;'>("+count_len + " Kommentare)</span>").insertAfter(dis_span);
+                    $("<span class='discussion_count'>("+count_len + " Kommentare)</span>").insertAfter(dis_span);
 			    }
 			    else{
-    			    $("<span class='discussion_count' style='color: #00a651; margin-left: 5px;'>(keine Kommentare)</span>").insertAfter(dis_span);
+    			    $("<span class='discussion_count'>(keine Kommentare)</span>").insertAfter(dis_span);
 			    }
 			},
             error: function() {
