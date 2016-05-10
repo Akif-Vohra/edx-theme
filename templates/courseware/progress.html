@@ -47,7 +47,7 @@ from django.utils.http import urlquote_plus
 
       <header class="progress-certificates">
         <h3 class="progress-certificates-title">${_("Course Progress").format(username=student.username, email=student.email) | h}</h3>
-        <h5 class="progress-certificates-title">${_("for Student '{username}' ({email})").format(username=student.username, email=student.email) | h}</h5>
+        <h5 class="progress-certificates-title">${_("for Student") ${_("'{username}' ({email})").format(username=student.username, email=student.email) | h}</h5>
       </header>
 
       %if show_generate_cert_btn:
