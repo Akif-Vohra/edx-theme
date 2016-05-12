@@ -2535,6 +2535,9 @@ section.container {
 body.discussion .content-wrapper {
 	background: @white;
 	#discussion-container {
+		.discussion-column {
+			border: none;
+		}
 		.label {
 			color: @color-darkgrey;
 			text-align: left;
@@ -2544,7 +2547,7 @@ body.discussion .content-wrapper {
 				font-style: italic;
 				text-transform: none;
 				font-size: @font-size-base;
-				padding: 10px 0;
+				padding: 40px 0 10px 0;
 			}
 		}
 		.home-header {
@@ -2561,9 +2564,29 @@ body.discussion .content-wrapper {
 		}
 		table.home-helpgrid {
 			font-style: italic;
+			border: 1px solid @color-lines;
+			box-shadow: none;
 			.row-item {
 				.icon {
 					font-size: 15px;
+				}
+			}
+			.helpgrid-row {
+				border-bottom: 1px solid @color-lines;
+				&.helpgrid-row-notification {
+					font-style: normal;
+					background: @color-lightgreen;
+					.row-item-full, .row-title {
+						font-size: @font-size-base;
+					}
+					.row-title {
+						font-weight: bold;
+						background: @color-lightgreen;
+					}
+					.notification-checkbox {
+						border-radius: @default-border-radius;
+						border: 1px solid @color-secondary;
+					}
 				}
 			}
 		}
@@ -2723,7 +2746,9 @@ section.container.dashboard {
 	
 	.my-courses {
 		.empty-dashboard-message {
-			padding: 40px 0 150px 0;
+			padding: 0;
+			margin: 0 0 1200px 0;
+			text-align: left;
 			p {
 				text-shadow: none;
 				
