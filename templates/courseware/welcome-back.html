@@ -47,7 +47,7 @@ from django.utils.translation import ugettext as _
   $(document).ready(function() {
 
 		$.ajax({
-            url: '/custom_api/courses-data/${course.id}',
+            url: "${reverse('edx_course_progress', kwargs={"course_id": course.id})}",
             type: 'GET',
             contentType: 'application/json',
             xhrFields: {

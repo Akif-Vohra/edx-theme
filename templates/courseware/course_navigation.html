@@ -219,7 +219,7 @@ include_special_exams = settings.FEATURES.get('ENABLE_SPECIAL_EXAMS', False) and
   function get_progress_data(eventType, data, element){
 
     $.ajax({
-            url: '/custom_api/courses-data/${course.id}',
+            url: "${reverse('edx_course_progress', kwargs={"course_id": course.id})}",
             type: 'GET',
             contentType: 'application/json',
             xhrFields: {
