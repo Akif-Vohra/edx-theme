@@ -203,9 +203,9 @@ include_special_exams = settings.FEATURES.get('ENABLE_SPECIAL_EXAMS', False) and
     all_problems = $('.xblock-student_view-problem');
     get_progress_data();
 
-    var dis_course_id = $("#courseware-search-results").attr('data-course-id');
     if($(".discussion-module").length){
         $('.discussion-module').each(function(index1, obj) {
+            var dis_course_id = $(this).parent().attr('data-course-id');
             var discussion_id = $(this).attr('data-discussion-id');
             get_discussion_count(index1, dis_course_id, discussion_id);
         });
