@@ -254,9 +254,12 @@ include_special_exams = settings.FEATURES.get('ENABLE_SPECIAL_EXAMS', False) and
 			success: function(result) {
 			    var count_len = result.discussion_data.length;
 			    var dis_span = $(".discussion-module").eq(index).find(".discussion-show");
-			    if(count_len){
-                    $("<span class='discussion_count'>("+count_len + " Kommentare)</span>").insertAfter(dis_span);
+			    if(count_len == 1){
+                    $("<span class='discussion_count'>("+count_len + " Kommentar)</span>").insertAfter(dis_span);
 			    }
+                            else if(count_len > 0){
+                            $("<span class='discussion_count'>("+count_len + " Kommentare)</span>").insertAfter(dis_span);
+                            }
 			    else{
     			    $("<span class='discussion_count'>(keine Kommentare)</span>").insertAfter(dis_span);
 			    }
