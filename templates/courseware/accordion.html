@@ -19,14 +19,23 @@ else:
         <span class="icon fa fa-caret-right" aria-hidden="true"></span>
         ##<i class="material-icons md-36">expand_more</i>
         ${chapter['display_name']}
+        % if chapter['is_completed'] :
+            <span class="completed"><i style="color:green;" class="material-icons">check_circle</i></span>
+        % endif
     </span>
+
+
 </a>
 <div class="chapter-content-container" id="${chapter['display_id']}-child" tabindex="-1" role="group" aria-label="${chapter['display_name']} submenu">
     <div class="chapter-menu">
         % for section in chapter['sections']:
         <div class="menu-item ${'active' if 'active' in section and section['active'] else ''} ${'graded'  if 'graded' in section and section['graded'] else ''}">
             <a href="${reverse('courseware_section', args=[course_id, chapter['url_name'], section['url_name']])}">
-                <p>${section['display_name']} ${'<span class="sr"> current section</span>' if 'active' in section and section['active'] else ''}</p>
+                <span>${section['display_name']} ${'<span class="sr"> current section</span>' if 'active' in section and section['active'] else ''}
+                    % if section['is_completed'] :
+                        <span class="completed"><i style="color:green;" class="material-icons">check_circle</i></span>
+                    % endif
+                </span>
                 <%
                 if section.get('due') is None:
                     due_date = ''
