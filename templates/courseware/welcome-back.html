@@ -17,7 +17,11 @@ from django.core.urlresolvers import reverse
 <div class="progress-info">
 	<h5 class="points-headline">Ihr Punktestand:</h5>
 	<div class="points">
-		<a href="/courses/${course.id}/progress"><span id="earned_points"></span> | <span id="total_points"></span></a>
+
+		<h5 style="text-align:center"> ${_('Course Progress')}
+		<i class="fa fa-spinner fa-pulse fa-2x fa-fw" id="course_loading-spinner"></i> <span class="sr-only">Loading...</span>
+		<progress style="margin-left:10px" id="course_progress_bar" max="100" value="0" hidden></progress> </h5><br>
+		<!--<a href="/courses/${course.id}/progress"><span id="earned_points"></span> | <span id="total_points"></span></a>-->
 	</div>
 
 	<p class="last-viewed">${_("Letzte angeschaute Lektion: {section_link}").format(
@@ -44,10 +48,12 @@ from django.core.urlresolvers import reverse
 <!-- <span><b>Percentage:</b><i id="percentage"></i> %</span> -->
 </div>
 </div>
+<!--$("#total_points").html(result.total);-->
+                    <!--$("#earned_points").html(result.earned);-->
 <script type="text/javascript">
-  $(document).ready(function() {
+	// moved ajax request out of document ready block to allow faster loading of score and percentage
 
-		$.ajax({
+	xhr1 = 	$.ajax({
             url: "${reverse('edx_course_progress', kwargs={"course_id": course.id})}",
             type: 'GET',
             contentType: 'application/json',
@@ -56,8 +62,9 @@ from django.core.urlresolvers import reverse
 			},
             success: function(result) {
                 if(result.started){
-                    $("#total_points").html(result.total);
-                    $("#earned_points").html(result.earned);
+                	$("#course_progress_bar").val(result.percentage)
+                	$("#course_loading-spinner").hide()
+					$("#course_progress_bar").show()
                     $("#short_description").html(result.short_description);
                     $("#course_title").html(result.title);
                     $("#percentage").html(result.percentage);
@@ -82,9 +89,22 @@ from django.core.urlresolvers import reverse
 
             },
             error: function() {
-                alert('Error: cannot connect to server');
+               console.log("Error fetching Scores");
             }
         });
 
-  });
+	// Added to abort ongoing AJAX Calls to prevent heavy background calculation
+
+	var Anchors = document.getElementsByTagName("a");
+
+    for (var i = 0; i < Anchors.length ; i++) {
+        Anchors[i].addEventListener("click",
+            function (event) {
+                event.preventDefault();
+                xhr1.abort();
+                window.location = this.href;
+            },
+            false);
+    }
+
 </script>

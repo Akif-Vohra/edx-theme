@@ -175,11 +175,13 @@ from django.utils.http import urlquote_plus
       <div class="chapters">
           <div class="sections">
             <h5> Angeschaute lektionen </h5>
-            <progress max="100" value="${ percentage }"></progress> <br>
+            <progress max="100" value="${ percentage }"></progress> <h5> ${ percentage } </h5>
           %for category in progress_stats:
-            <h5> ${ category }</h5>
+            <h5> ${ category }</h5> <h5> ${ progress_stats[category] }</h5>
             <progress max="100" value="${ progress_stats[category] }"></progress> <br>
           %endfor
+              <br>
+             <h5 style="text-align:center"> Sie haben den Kurs bestanden, wenn Sie mehr als ${minimum_percentage }% der bewerteten Aufgabentypen bestanden haben. </h5>
           </div>
       </div>
       <div class="chapters">

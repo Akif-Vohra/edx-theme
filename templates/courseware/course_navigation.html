@@ -108,14 +108,15 @@ include_special_exams = settings.FEATURES.get('ENABLE_SPECIAL_EXAMS', False) and
     <!-- Feedback-Button for Testing -->  
 	<!--<div class="feedback"><a href="https://docs.google.com/forms/d/1boYzskuirreAr-Bb2-nVCfljEJYQ84vMz_SFh_JaTkY/viewform" target="_blank">Feedback</a></div>
 -->
-    <div id="nav_progress_custom" title="Punktestand">Ihr Punktestand: 
-    	<a href="/courses/${course.id}/progress">
-    		<span id="custom_progress">
-    			<span id="nav_earned_points"></span> / <span id="nav_total_points"></span>
-    			<!--(<span id="nav_percentage"></span>%)-->
-    		</span>
+    <span id="nav_progress_custom" title="Punktestand">Ihr Fortschritt:
+        <i class="fa fa-spinner fa-pulse fa-1x fa-fw" id="loading-spinner"></i> <span class="sr-only">Loading...</span>
+    	<a href="/courses/${course.id}/progress" id="progress_link">
+            <!--<span id="nav_earned_points"></span> / <span id="nav_total_points"></span>-->
+            <progress id="progress_bar" max="100" value="0" hidden></progress> <br>
+            <span id="nav_percentage"></span>
+
     	</a>
-   	</div>
+   	</span>
   </div>
 </nav>
 %endif
@@ -198,10 +199,24 @@ include_special_exams = settings.FEATURES.get('ENABLE_SPECIAL_EXAMS', False) and
 
 <!-- Added by Jay Modi-->
 <script type="text/javascript">
-  $(document).ready(function() {
 
-    all_problems = $('.xblock-student_view-problem');
+  $(document).ready(function() {
     get_progress_data();
+
+    var Anchors = document.getElementsByTagName("a");
+
+    for (var i = 0; i < Anchors.length ; i++) {
+        Anchors[i].addEventListener("click",
+            function (event) {
+                event.preventDefault();
+                xhr.abort();
+                window.location = this.href;
+
+            },
+            false);
+    }
+    all_problems = $('.xblock-student_view-problem');
+
 
     if($(".discussion-module").length){
         $('.discussion-module').each(function(index1, obj) {
@@ -218,7 +233,7 @@ include_special_exams = settings.FEATURES.get('ENABLE_SPECIAL_EXAMS', False) and
 
   function get_progress_data(eventType, data, element){
 
-    $.ajax({
+    xhr = $.ajax({
             url: "${reverse('edx_course_progress', kwargs={"course_id": course.id})}",
             type: 'GET',
             contentType: 'application/json',
@@ -229,14 +244,19 @@ include_special_exams = settings.FEATURES.get('ENABLE_SPECIAL_EXAMS', False) and
             if(result.started){
                 $("#nav_total_points").html(result.total);
                 $("#nav_earned_points").html(result.earned);
-                $("#nav_percentage").html(Math.round(result.percentage * 100) / 100);
+                $("#nav_percentage").html(Math.round(result.percentage * 100) / 100 + '%');
+                $("#progress_bar").val(Math.round(result.percentage * 100) / 100);
+                $("#progress_link").show();
+                $("#progress_bar").show();
+                $('#loading-spinner').hide()
+
             }
             else{
                 $('#nav_progress_custom').hide();
             }
             },
             error: function() {
-                alert('Error: cannot connect to server');
+                console.log('There has been an error fetching your score information');
             }
         });
 
@@ -244,7 +264,7 @@ include_special_exams = settings.FEATURES.get('ENABLE_SPECIAL_EXAMS', False) and
 
   // Ajax call to get discussion data
   function get_discussion_count(index, course_id, discussion_id){
-    $.ajax({
+    discussion_xhr  = $.ajax({
             url: "/courses/"+course_id+"/discussion/forum/"+discussion_id+"/inline",
             type: 'GET',
             contentType: 'application/json',
