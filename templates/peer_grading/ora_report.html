@@ -1,8 +1,11 @@
-<p>Hello ${user.username},</p>
-<p> there are new submissions to review in your course: ${course}.</p>
-<p>Please visit this link: </p>
-<p>${courseware_url}</p>
-<p>Current Statistic for Learner Progress:</p>
+<p>Liber Kursmitarbeiter,</p>
+<p>es gibt neue Einreichungen für Aufgaben im Kurs : ${course}.</p>
+
+<br/>
+<p><b>Lektion</b></p>
+<p>${chapter_name}</p>
+
+<p><b>Statistik</b></p>
 <div class="staff-info__status ui-staff__content__section">
     <table class="staff-info__status__table">
         <thead>
@@ -15,11 +18,15 @@
         <tbody>
         %for item in status_counts:
             <tr>
-                <td class="label" style="font-size:13px !important;" cellpadding="3px">${ item.get('status') }</td>
-                <td class="value" style="font-size:13px !important;" cellpadding="3px">${ item.get('count') }</td>
+                <td class="label" style="font-size:13px !important;" cellpadding="3px">${ item }</td>
+                <td class="value" style="font-size:13px !important;" cellpadding="3px">${ status_counts[item] }</td>
             </tr>
         %endfor
         </tbody>
     </table>
 </div>
-<p>This email was sent automatically by the LYNX Online Training Platform.</p>
+<br/>
+<br/>
+<p>Für Details besuchen Sie bitte diesen Link:</p>
+<p><a href="${courseware_url}"></a>${courseware_url}</p>
+<p>Diese E-Mail wurde automatisch von der LYNX Online-Training Plattform versandt.</p>
