@@ -356,6 +356,17 @@ blockquote {
 				.group-heading {
 					font-size: 14px;
 					color: @color-darkgrey;
+					padding: 15px 35px 15px 40px;
+					.completed i {
+						color: @white;
+    					position: absolute;
+    					right: 0;
+    					top: 0;
+    					padding: 0;
+    					margin: 16px 7px 0 5px;
+    					background: @color-secondary;
+    					border-radius: 13px;
+					}
 					&.active  {
 						color: @color-secondary;
 						font-weight: 600;
@@ -379,6 +390,14 @@ blockquote {
 					padding: 0;
 					.menu-item {
 						margin: 0;
+						.completed i {
+							color: @color-secondary;
+    						position: absolute;
+    						right: 0;
+    						top: 0;
+    						padding: 0;
+    						margin: 7px 7px 0 5px;
+						}
 						&.active {
 							a {
 								background-color: @color-secondary;
@@ -388,11 +407,14 @@ blockquote {
 									color: @color-darkgrey;
 								}	
 							}
+							.completed i {
+								color: @white;
+							}
 							
 						}
 
 						a {
-							padding: 10px 10px 10px 40px;
+							padding: 10px 35px 10px 40px;
 							font-weight: 400;
 							border-radius: 0;
 							p {
@@ -618,7 +640,7 @@ div.course-wrapper {
 		.done_onoffswitch_wrapper {
 			margin: 0;
 			margin: 0 -2.5em 0 -100em;
-			padding: 20px 0 0 0;
+			padding: 40px 0 0 0;
 			width: auto;
 			background: @color-secondary;
 			.done_onoffswitch {
@@ -653,6 +675,7 @@ div.course-wrapper {
 					text-shadow: none;
 					transition: all 0.2s ease-out 0s;
 					text-align: left;
+					height: 35px;
 				}
 				.done_onoffswitch-checkbox:checked + .done_onoffswitch-label .done_onoffswitch-switch {
 						//background: #ff0000 !important;
@@ -668,6 +691,10 @@ div.course-wrapper {
 					.done_onoffswitch-switch {
 						border: 1px solid @color-darkgrey;
 						background: @white !important;
+						transition: none;
+						-moz-transition: none;
+						-webkit-transition: none;
+						-o-transition: none;
 					}
 				}
 			}
@@ -1896,6 +1923,7 @@ div.course-wrapper {
 		nav.sequence-bottom {
 			width: auto;
 			height:auto;
+			padding: 10px 0 30px 0;
 			a {
 				font-family: @font-family-headings;
 				color: @color-secondary;
@@ -1910,7 +1938,11 @@ div.course-wrapper {
 					box-shadow: none;
 				}
 				&.prev-subsection {
-					margin-right: 15px;
+					float:left;
+					margin-left: -9px;
+				}
+				&.next-subsection {
+					float:right;
 				}
 			}
 			i {
@@ -2320,7 +2352,7 @@ input[type="submit"]:hover, .forum-new-post-form .submit:hover, .login-register 
 ///////////////////////////////////////////////////////////////////////////////////////
 //Welcome Back Site
 .welcome-back {
-	padding: 0 0 100px 0;
+	padding: 0 0 350px 0;
 	.course-info {
 		display: table;
 		margin: 25px 0 40px 0;

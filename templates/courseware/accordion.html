@@ -20,9 +20,9 @@ else:
         ##<i class="material-icons md-36">expand_more</i>
         ${chapter['display_name']}
         % if chapter['is_completed'] :
-            <span class="completed"><i style="color:green;" class="material-icons">check_circle</i></span>
+            <span class="completed"><i class="material-icons">check</i></span>
         % endif
-    </span>
+    </span> 
 
 
 </a>
@@ -33,7 +33,7 @@ else:
             <a href="${reverse('courseware_section', args=[course_id, chapter['url_name'], section['url_name']])}">
                 <span>${section['display_name']} ${'<span class="sr"> current section</span>' if 'active' in section and section['active'] else ''}
                     % if section['is_completed'] :
-                        <span class="completed"><i style="color:green;" class="material-icons">check_circle</i></span>
+                        <div class="completed"><i class="material-icons">check</i></div>
                     % endif
                 </span>
                 <%
@@ -85,3 +85,4 @@ else:
 % for chapter in toc:
     ${make_chapter(chapter)}
 % endfor
+
