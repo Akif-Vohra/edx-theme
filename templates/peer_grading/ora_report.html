@@ -1,5 +1,5 @@
-<p>Liber Kursmitarbeiter,</p>
-<p>es gibt neue Einreichungen für Aufgaben im Kurs : ${course}.</p>
+<p>Lieber Kursmitarbeiter,</p>
+<p>es gibt neue Einreichungen für Aufgaben im Kurs ,,${course}''.</p>
 
 <br/>
 <p><b>Lektion</b></p>
@@ -7,12 +7,12 @@
 
 <p><b>Statistik</b></p>
 <div class="staff-info__status ui-staff__content__section">
-    <table class="staff-info__status__table">
+    <table class="staff-info__status__table" cellpadding="5">
         <tbody>
         %for item in status_counts:
             <tr>
-                <td class="label" style="font-size:13px !important;" cellpadding="3px">${ item }</td>
-                <td class="value" style="font-size:13px !important;" cellpadding="3px">${ status_counts[item] }</td>
+                <td class="label" style="font-size:13px !important;">${ item }</td>
+                <td class="value" style="font-size:13px !important;">${ status_counts[item] }</td>
             </tr>
         %endfor
         </tbody>
