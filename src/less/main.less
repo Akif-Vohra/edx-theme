@@ -663,38 +663,30 @@ div.course-wrapper {
 			background: @color-secondary;
 			.done_onoffswitch {
 				margin: 0 -2.5em 0 100em;
-				.done_onoffswitch-inner:after {
-					background: @color-tertiary;
-					border-bottom: 4px solid @color-tertiary-dark;
-					-webkit-border-radius: @default-border-radius;
-					-moz-border-radius: @default-border-radius;
-					box-shadow: @box-shadow-default;
-					color: @color-darkgrey;
-					padding: 2px 0 20px 32px;
-					text-transform: uppercase;
-					font-family: @font-family-headings;
-					font-size: 16px;
-					letter-spacing: @letter-spacing-headings;
-					text-shadow: none;
-					transition: all 0.2s ease-out 0s;
+				.done_onoffswitch-inner {
+					transition: none;
+					font-family: @font-family-headings !important;
 				}
-				.done_onoffswitch-inner:before {
+				.done_onoffswitch-inner:after, .done_onoffswitch-inner:before {
 					background: @color-tertiary;
 					border-bottom: 4px solid @color-tertiary-dark;
 					-webkit-border-radius: @default-border-radius;
 					-moz-border-radius: @default-border-radius;
 					box-shadow: @box-shadow-default;
 					color: @color-darkgrey;
-					padding: 2px 0 6px 32px;
+					padding: 3px 0 20px 32px;
 					text-transform: uppercase;
-					font-family: @font-family-headings;
+					font-family: @font-family-headings !important;
 					font-size: 16px;
+					font-weight: normal;
 					letter-spacing: @letter-spacing-headings;
 					text-shadow: none;
-					transition: all 0.2s ease-out 0s;
+					transition: none;
 					text-align: left;
 					height: 35px;
+					content: "Lektion erledigt";
 				}
+
 				.done_onoffswitch-checkbox:checked + .done_onoffswitch-label .done_onoffswitch-switch {
 						//background: #ff0000 !important;
 						//display:none;
@@ -702,6 +694,7 @@ div.course-wrapper {
 						background-color: @color-secondary !important;
 						left: 0;
 					}
+					
 				.done_onoffswitch-label {
 					border: none;
 					border-radius: @default-border-radius;
@@ -713,6 +706,7 @@ div.course-wrapper {
 						-moz-transition: none;
 						-webkit-transition: none;
 						-o-transition: none;
+						left: 0;
 					}
 				}
 			}
@@ -2371,9 +2365,18 @@ input[type="submit"]:hover, .forum-new-post-form .submit:hover, .login-register 
 //Welcome Back Site
 .welcome-back {
 	padding: 0 0 350px 0;
+	h4 {
+		border: none;
+		margin: 20px 0 0 0;
+		padding: 0;
+		color: @color-darkgrey;
+	}
+	h5 {
+		color: @color-secondary;
+	}
 	.course-info {
 		display: table;
-		margin: 25px 0 40px 0;
+		margin: 15px 0 40px;
 	}
  	.course-image {
 		float: left;
