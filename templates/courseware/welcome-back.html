@@ -64,7 +64,7 @@ from django.core.urlresolvers import reverse
 			},
             success: function(result) {
                 if(result.started){
-                	$("#course_progress_bar").val(result.percentage)
+                    $("#course_progress_bar").val(Math.round(result.percentage * 100) / 100);
                 	$("#course_loading-spinner").hide()
 					$("#course_progress_bar").show()
                     $("#short_description").html(result.short_description);
