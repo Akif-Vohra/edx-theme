@@ -82,16 +82,33 @@ body, body.view-in-course, body.view-passwordreset {
 			}
 			#nav_progress_custom {
 				float: right;
-				width: 200px;
+				width: 250px;
 				text-align: right;
-				#custom_progress {
+				.progress-text {
+					float: left;
+				}
+				.progress-box {
+					margin-top: -3px;
+				}
+				#progress_bar {
+					height: 4px;
+					background: @color-mediumgrey;
+    				border: none; /* Needed for Firefox */
+    				color: #646464; /* For IE10 */
+    				-webkit-appearance: none;
+    				border-radius: @default-border-radius 0 0 @default-border-radius;
+				}
+				#progress_bar::-moz-progress-bar {
 					background-color: @color-secondary;
-					padding: 3px 6px;
-					border-radius: 3px;
-					color: @white;
-					#nav_earned_points {
-						font-weight: bold;
-					}
+					border-radius: @default-border-radius 0 0 @default-border-radius;
+				}
+				#progress_bar::-webkit-progress-value {
+					background-color: @color-secondary;
+					border-radius: @default-border-radius 0 0 @default-border-radius;
+				}
+				#progress_bar::-webkit-progress-bar {
+					background-color: @color-mediumgrey;
+					border-radius: @default-border-radius 0 0 @default-border-radius;
 				}
 			}
 		}
@@ -366,6 +383,7 @@ blockquote {
     					margin: 16px 7px 0 5px;
     					background: @color-secondary;
     					border-radius: 13px;
+    					font-size: 20px;
 					}
 					&.active  {
 						color: @color-secondary;
@@ -445,7 +463,7 @@ div.course-wrapper {
 		padding: 2.5em 2.5em 0 10px;
 		margin: 0;
 		border-right: 1px solid @color-lines;
-		min-height: 750px;
+		min-height: 1000px;
 		.vert-mod {
 			&>div ul {
 				margin: 0;
@@ -2362,18 +2380,6 @@ input[type="submit"]:hover, .forum-new-post-form .submit:hover, .login-register 
 		margin: 0 20px 0 0;
 		width: 25%;
 	}
-	.progress-info {
-		clear: both;
-		margin: 20px 0 0 0;
-		background: @color-lightgreen;
-		text-align: center;
-		color: @color-darkgrey;
-		padding: 40px 0 60px;
-		p {
-			margin: 0;
-			padding: 0;
-		}
-	}
 	.course-description {
 		width: 70%;
 		float:left;
@@ -2384,17 +2390,26 @@ input[type="submit"]:hover, .forum-new-post-form .submit:hover, .login-register 
 	#short_description {
 		margin: 0;
 	}
-	h5.points-headline {
-		color: @color-darkgrey;
-		text-align: center;
-		margin: 0 0 20px 0;
-		padding: 0;
-		font-family: @font-family-base;
-		font-size: @font-size-base;
-		font-weight: bold;
+	.conclusion {
+		margin: 30px 0 0 0;
+		i {
+			float: left;
+			margin-right: 10px;
+		}
 	}
+	#conclusion_text {
+		margin: 0 0 10px 0;
+	}
+	.progress-info {
+		margin: 20px 0 30px 0;
+		color: @color-darkgrey;
+		p {
+			margin: 0;
+			padding: 0;
+		}
+	}
+
 	.points {
-		text-align: center;
 		font-size: 25px;
 		margin: 0 0 25px 0;
 		a {
@@ -2403,44 +2418,88 @@ input[type="submit"]:hover, .forum-new-post-form .submit:hover, .login-register 
 			padding: 10px 15px 10px 15px;
 			color: @color-darkgrey;
 		}
+		h5 {
+			padding: 0;
+		}
 		#earned_points {
     		color: @white;
     	}
     	#total_points {
     		color: @color-darkgrey;
     	}
-	}
-	#conclusion_text {
-		//	font-weight: bold;
-		font-family: @font-family-headings;
-		font-size: @font-size-h3;
-	}
-	p.last-viewed {
-		text-align: center;
-		margin: 30px 0 40px 0 !important;
-	}
-	p a.current-lecture {
-		font-weight: bold;
-		color: @color-darkgrey;
-	}
-
-	.resume {
-		background: @color-tertiary;
-    	font-family: @font-family-headings;
-    	font-size: 18px;
-    	line-height: 1em;
-    	border: none;
-    	border-bottom: 4px solid @color-tertiary-dark;
-    	border-radius: 2px;
-    	color: @color-darkgrey;
-    	text-transform: uppercase;
-    	padding: 15px 16px 10px;
-    	//display: table-cell;
-    	&:hover {
-			box-shadow: @box-shadow-hover;
-			border-bottom: 4px solid #debd10;
+    	#course_progress_bar {
+    		border-radius: @default-border-radius !important;
+    	}
+    	#course_progress_bar {
+			width: 93%;
+    		float: left;
+    		margin: 2px 0 40px 0;
+    		height: 25px;
+			background: @color-mediumgrey;
+    		border: none; /* Needed for Firefox */
+    		color: #646464; /* For IE10 */
+    		-webkit-appearance: none;
+    		border-radius: @default-border-radius;
+			}
+			#course_progress_bar::-moz-progress-bar {
+				background-color: @color-secondary;
+				border-radius: @default-border-radius 0 0 @default-border-radius;
+			}
+			#course_progress_bar::-webkit-progress-value {
+				background-color: @color-secondary;
+				border-radius: @default-border-radius 0 0 @default-border-radius;
+			}
+			#course_progress_bar::-webkit-progress-bar {
+				background-color: @color-mediumgrey;
+				border-radius: @default-border-radius 0 0 @default-border-radius;
+			}
+    	
+    	
+    	#percentage {
+    		width: 7%;
+    		float: right;
+    		text-align: right;
+    		font-family: @font-family-headings;
+    		font-size: @font-size-h1;
+    		color: @color-secondary;
     	}
 	}
+	.resume-box {
+		clear: both;
+		overflow: auto;
+		border: 1px solid @color-mediumgrey;
+		border-radius: @default-border-radius;
+		padding: 30px;
+		.last-viewed {
+			float: left;
+			width:70%;
+			padding-right: 20px;
+		}
+		a.current-lecture {
+			font-weight: bold;
+			color: @color-darkgrey;
+		}
+
+		.resume {
+			background: @color-tertiary;
+		  	font-family: @font-family-headings;
+	    	font-size: 18px;
+    		line-height: 1em;
+    		border: none;
+	    	border-bottom: 4px solid @color-tertiary-dark;
+    		border-radius: 2px;
+    		color: @color-darkgrey;
+		 	text-transform: uppercase;
+	    	padding: 15px 16px 10px;
+    		margin-top: 3px;
+    		float: right;
+    		&:hover {
+				box-shadow: @box-shadow-hover;
+				border-bottom: 4px solid #debd10;
+    		}
+		}
+	}
+
 }
 ///////////////////////////////////////////////////////////////////////////////////////
 //About site - content wrapper

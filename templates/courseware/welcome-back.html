@@ -4,32 +4,32 @@ from django.core.urlresolvers import reverse
 
 %>
 <div class="welcome-back">
-	<h3 id="conclusion_text"></h3>
+	<h3 id="course_title"></h3>
 	<div class="course-info">
 		<div class="course-image"><img src="" id="course_image" width="300px"/></div>
 		<div class="course-description">
-			<h5 id="course_title"></h5>
 			<div id="short_description"></div>
 		</div>
 	</div>
 
 
+
 <div class="progress-info">
-	<h5 class="points-headline">Ihr Punktestand:</h5>
 	<div class="points">
 
-		<h5 style="text-align:center"> ${_('Course Progress')}
+		<h5> ${_('Course Progress')}</h5>
 		<i class="fa fa-spinner fa-pulse fa-2x fa-fw" id="course_loading-spinner"></i> <span class="sr-only">Loading...</span>
-		<progress style="margin-left:10px" id="course_progress_bar" max="100" value="0" hidden></progress> </h5><br>
+		<progress id="course_progress_bar" max="100" value="0" hidden></progress> <div id="percentage"></div>
 		<!--<a href="/courses/${course.id}/progress"><span id="earned_points"></span> | <span id="total_points"></span></a>-->
 	</div>
-
-	<p class="last-viewed">${_("Letzte angeschaute Lektion: {section_link}").format(
-	    section_link=u'<a href="{url}" class="current-lecture">{section_name}</a>'.format(
-	        url=prev_section_url,
-	        section_name=prev_section.display_name_with_default,
-	    )
-    )}</p>
+</div>
+	<div class="resume-box">
+		<div class="last-viewed">${_("Letzte angeschaute Lektion: {section_link}").format(
+	    	section_link=u'<br><a href="{url}" class="current-lecture">{section_name}</a>'.format(
+	        	url=prev_section_url,
+	        	section_name=prev_section.display_name_with_default,
+	    	)
+    	)}</div>
 <!--
 <p>
 	${_("You were most recently in {section_link}.  If you\'re done with that, choose another section on the left.").format(
@@ -44,9 +44,12 @@ from django.core.urlresolvers import reverse
     
 <!-- Last Viewed: -->
 <!-- <span> <a href="${prev_section_url}" class="btn btn-light next">${prev_section.display_name_with_default}</a></span>-->
-	<span> <a href="${prev_section_url}" class="resume">Training fortsetzen</a></span>
+		<div><a href="${prev_section_url}" class="resume">Training fortsetzen</a></div>
+	</div>
+		<div class="conclusion"><i class="material-icons">sentiment_satisfied</i> <div id="conclusion_text"></div></div>
+
 <!-- <span><b>Percentage:</b><i id="percentage"></i> %</span> -->
-</div>
+
 </div>
 <!--$("#total_points").html(result.total);-->
                     <!--$("#earned_points").html(result.earned);-->
@@ -67,7 +70,7 @@ from django.core.urlresolvers import reverse
 					$("#course_progress_bar").show()
                     $("#short_description").html(result.short_description);
                     $("#course_title").html(result.title);
-                    $("#percentage").html(result.percentage);
+                    $("#percentage").html(Math.round(result.percentage) + ' %');
                     $("#course_image").attr("src", result.course_image);
 
                     if(result.percentage < parseFloat(1) ){
