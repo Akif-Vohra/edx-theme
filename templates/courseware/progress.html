@@ -48,7 +48,7 @@ from django.utils.http import urlquote_plus
 
       <header class="progress-certificates">
         <h3 class="progress-certificates-title">${_("Course Progress").format(username=student.username, email=student.email) | h}</h3>
-        <h5 class="progress-certificates-title">${_("'{username}' ({email})").format(username=student.username, email=student.email) | h}</h5>
+        <!--<h5 class="progress-certificates-title">${_("'{username}' ({email})").format(username=student.username, email=student.email) | h}</h5>-->
       </header>
 
       %if show_generate_cert_btn:
@@ -172,21 +172,31 @@ from django.utils.http import urlquote_plus
             </div>
         </section>
       %endif
-        <h5> Angeschaute lektionen </h5>
-            <progress max="100" value="${ percentage }"
+      <progress max="100" value="${ percentage }"
+
                       style="border-radius:2px!important; width:90%; height:25px; margin:2px 0 40px;
+
                       background:#e0e0e0; color:#646464; float:left;">
+
             </progress> <br><h5 style="float:left;"> ${ percentage } </h5>
-      <div class="chapters">
+      <div class="progress-box">
+
+		<p>Bewertete Kursmodule:</p>
           <div class="sections">
+            <table class="progress-table">
+            <!--<progress max="100" value="${ percentage }"></progress> <h5> ${ percentage } </h5>-->
           %for category in progress_stats:
-            <h5> ${ category }</h5> <h5> ${ progress_stats[category] }</h5>
-            <progress max="100" value="${ progress_stats[category] }"></progress> <br>
+			<tr>
+				<td class="category-name">${ category }</td>
+				<td class="category-progress"><progress max="100" value="${ progress_stats[category] }" id="category_progress_bar"></progress></td>
+				<td class="category-percentage">${ progress_stats[category] } %</td>
+			</tr>
           %endfor
-              <br>
-             <h5 style="text-align:center"> Sie haben den Kurs bestanden, wenn Sie mehr als ${minimum_percentage }% der bewerteten Aufgabentypen bestanden haben. </h5>
+              </table>
           </div>
       </div>
+      <p class="pass-course-info"> Sie haben den Kurs bestanden, wenn Sie mehr als <strong>${minimum_percentage }%</strong> der bewerteten Aufgabentypen bestanden haben.</p>
+
       <div class="chapters">
 
         %for chapter in courseware_summary:

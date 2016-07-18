@@ -60,6 +60,9 @@ body, body.view-in-course, body.view-passwordreset {
 		.course-material {
 			padding: 18px 10px 18px 0;
 			height: 60px;
+			
+
+			
 			ol.course-tabs {
 				float: left;
 				padding: 0;
@@ -91,25 +94,10 @@ body, body.view-in-course, body.view-passwordreset {
 					margin-top: -3px;
 				}
 				#progress_bar {
-					height: 4px;
-					background: @color-mediumgrey;
-    				border: none; /* Needed for Firefox */
-    				color: #646464; /* For IE10 */
-    				-webkit-appearance: none;
-    				border-radius: @default-border-radius 0 0 @default-border-radius;
+					height: 3px;
 				}
-				#progress_bar::-moz-progress-bar {
-					background-color: @color-secondary;
-					border-radius: @default-border-radius 0 0 @default-border-radius;
-				}
-				#progress_bar::-webkit-progress-value {
-					background-color: @color-secondary;
-					border-radius: @default-border-radius 0 0 @default-border-radius;
-				}
-				#progress_bar::-webkit-progress-bar {
-					background-color: @color-mediumgrey;
-					border-radius: @default-border-radius 0 0 @default-border-radius;
-				}
+
+
 			}
 		}
 	}
@@ -2438,24 +2426,8 @@ input[type="submit"]:hover, .forum-new-post-form .submit:hover, .login-register 
     		float: left;
     		margin: 2px 0 40px 0;
     		height: 25px;
-			background: @color-mediumgrey;
-    		border: none; /* Needed for Firefox */
-    		color: #646464; /* For IE10 */
-    		-webkit-appearance: none;
-    		border-radius: @default-border-radius;
-			}
-			#course_progress_bar::-moz-progress-bar {
-				background-color: @color-secondary;
-				border-radius: @default-border-radius 0 0 @default-border-radius;
-			}
-			#course_progress_bar::-webkit-progress-value {
-				background-color: @color-secondary;
-				border-radius: @default-border-radius 0 0 @default-border-radius;
-			}
-			#course_progress_bar::-webkit-progress-bar {
-				background-color: @color-mediumgrey;
-				border-radius: @default-border-radius 0 0 @default-border-radius;
-			}
+		}
+		
     	
     	
     	#percentage {
@@ -2648,12 +2620,39 @@ section.container {
 			}
 		}
 	}
+	.progress-box {
+		.progress-table {
+			width: 100%;
+			margin: 0 0 20px 0;
+			tr {
+				height: 35px;
+			}
+			td {
+				font-weight: bold;
+			}
+			.category-name {
+				width: 15%;
+			}
+			.category-progress {
+				width: 75%;
+			}
+			.category-percentage {
+				width: 10%;
+				text-align: right;
+				color: @color-secondary;
+			}
+			#category_progress_bar {
+				height: 2px;
+				width: 100%;
+			}
+		}
+	}
 	.chapters {
 		border: none;
-		margin: 80px 0 0 0;
-		background: @color-lightgrey;
+		margin: 60px 0 0 0;
 		padding: 2.5em;
 		clear: both;
+		background: @color-lightgrey;
 		
 		section {
 			border-bottom: 1px solid @color-secondary;
@@ -3055,6 +3054,27 @@ section.container.dashboard {
 		font-size: @font-size-base;
 		text-transform: none;
 	}
+}
+
+//Progress Bar 
+#progress_bar, #course_progress_bar, #category_progress_bar {
+	background: @color-mediumgrey;
+	border: none; /* Needed for Firefox */
+	color: @color-mediumgrey; /* For IE10 */
+	-webkit-appearance: none;
+    border-radius: @default-border-radius 0 0 @default-border-radius;
+}
+#progress_bar::-moz-progress-bar, #course_progress_bar::-moz-progress-bar, #category_progress_bar::-moz-progress-bar {
+	background-color: @color-secondary;
+	border-radius: @default-border-radius 0 0 @default-border-radius;
+}
+#progress_bar::-webkit-progress-value, #course_progress_bar::-webkit-progress-value, #category_progress_bar::-webkit-progress-value {
+	background-color: @color-secondary;
+	border-radius: @default-border-radius 0 0 @default-border-radius;
+}
+#progress_bar::-webkit-progress-bar, #course_progress_bar::-webkit-progress-bar, #category_progress_bar::-webkit-progress-bar {
+	background-color: @color-mediumgrey;
+	border-radius: @default-border-radius 0 0 @default-border-radius;
 }
 
 //Course Email notifications
@@ -3622,3 +3642,4 @@ body.layout-accomplishment.certificate-honor {
 		}
 	}
 }
+
