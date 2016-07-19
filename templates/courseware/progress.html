@@ -172,17 +172,22 @@ from django.utils.http import urlquote_plus
             </div>
         </section>
       %endif
-      <progress max="100" value="${ percentage }"
+      
 
-                      style="border-radius:2px!important; width:90%; height:25px; margin:2px 0 40px;
-
-                      background:#e0e0e0; color:#646464; float:left;">
-
-            </progress> <br><h5 style="float:left;"> ${ percentage } </h5>
+            </progress>
       <div class="progress-box">
 
-		<p>Bewertete Kursmodule:</p>
+		
           <div class="sections">
+            <table class="progress-table">
+            	<tr>
+            		<td colspan="2"><progress max="100" id="course_progress_bar" value="${ percentage }"></td>
+            		<td class="percentage-total">${ percentage } %</td>
+            	</tr>
+            	<tr>
+            		<td colspan="3" class="headline-categories">Bewertete Kursmodule:</td>
+            	</tr>
+            </table>
             <table class="progress-table">
             <!--<progress max="100" value="${ percentage }"></progress> <h5> ${ percentage } </h5>-->
           %for category in progress_stats:
@@ -195,7 +200,7 @@ from django.utils.http import urlquote_plus
               </table>
           </div>
       </div>
-      <p class="pass-course-info"> Sie haben den Kurs bestanden, wenn Sie mehr als <strong>${minimum_percentage }%</strong> der bewerteten Aufgabentypen bestanden haben.</p>
+      <p class="pass-course-info">Sie haben den Kurs bestanden, wenn Sie mehr als <strong>${minimum_percentage }%</strong> der bewerteten Aufgaben absolviert haben.</p>
 
       <div class="chapters">
 
@@ -221,18 +226,25 @@ from django.utils.http import urlquote_plus
                   </span>
                 %endif
                 </a>
+                <!--
                 %if total > 0 or earned > 0:
-                  <span class="points-chapter"> ${"({0:.3n}/{1:.3n}) {2}".format( float(earned), float(total), percentageString ) | h}
-		  </span>
-		    <%
+                  <span class="points-chapter"> <!--${"({0:.3n}/{1:.3n}) {2}".format( float(earned), float(total), percentageString ) | h}
+		  		</span>-->
+		   		<!-- <%
 		        percentage_final = (float(earned)*100)/total
-		    %>
-                  %if percentage_final == 100.0:
-                       <div class="completed"><i class="material-icons">check_circle</i></div>
-                  %endif
-
+		    	%>
                 %endif
+                //-->
               </h5>
+                                
+              <div class="completed">
+              	%if percentage_final == 100.0:
+                <i class="material-icons">check_circle</i>
+                %else:
+                <i class="material-icons">radio_button_unchecked</i>
+                %endif
+              </div>
+                  
               <!--
               <p>
                 ${section['format'] | h}
@@ -254,7 +266,7 @@ from django.utils.http import urlquote_plus
               <div class="scores">
               	
                 %if len(section['scores']) > 0:
-                  <div class="score-description"><span class="scores-type">${section['format'] | h}</span> ${ _("Problem Scores: ") if section['graded'] else _("Practice Scores: ")} </div>
+                  <!--<div class="score-description"><span class="scores-type">${section['format'] | h}</span> ${ _("Problem Scores: ") if section['graded'] else _("Practice Scores: ")} </div>-->
                   <ol>
                     %for score in section['scores']:
                     <li>${"{0:.3n} / {1:.3n}".format(float(score.earned),float(score.possible)) | h}</li>
