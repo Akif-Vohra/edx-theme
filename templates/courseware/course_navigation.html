@@ -204,18 +204,6 @@ include_special_exams = settings.FEATURES.get('ENABLE_SPECIAL_EXAMS', False) and
   $(document).ready(function() {
     get_progress_data();
 
-    var Anchors = document.getElementsByTagName("a");
-
-    for (var i = 0; i < Anchors.length ; i++) {
-        Anchors[i].addEventListener("click",
-            function (event) {
-                event.preventDefault();
-                xhr.abort();
-                window.location = this.href;
-
-            },
-            false);
-    }
     all_problems = $('.xblock-student_view-problem');
 
 
