@@ -657,9 +657,15 @@ div.course-wrapper {
 			.done_onoffswitch {
 				margin: 0 -2.5em 0 100em;
 				width: 280px;
+				height: 35px;
+				&:hover {
+					box-shadow: @box-shadow-default;
+				}
 				.done_onoffswitch-inner {
 					transition: none;
 					font-family: @font-family-headings !important;
+
+					
 				}
 				.done_onoffswitch-inner:after, .done_onoffswitch-inner:before {
 					background: @color-tertiary;
@@ -682,12 +688,10 @@ div.course-wrapper {
 				}
 
 				.done_onoffswitch-checkbox:checked + .done_onoffswitch-label .done_onoffswitch-switch {
-						//background: #ff0000 !important;
-						//display:none;
-						background-image:url("//85.10.201.133:8000/xblock/resource/done/public/check-full.png") !important;
-						background-color: @color-secondary !important;
-						left: 0;
-					}
+					background-image:url("//85.10.201.133:8000/xblock/resource/done/public/check-full.png") !important;
+					background-color: @color-secondary !important;
+					left: 0;
+				}
 					
 				.done_onoffswitch-label {
 					border: none;
@@ -1638,7 +1642,9 @@ div.course-wrapper {
 			}
 			.discussion_count {
 				//font-weight: bold;
-				padding-left: 10px;
+				padding-left: 6px;
+				position: relative;
+				top: 2px;
 			}
 			.cancel {
 				background: @color-icons;
@@ -2814,6 +2820,28 @@ body.discussion .content-wrapper {
 			}
 		}
 	}
+	//Discussion User Page
+	.user-profile {
+		vertical-align: top;
+		background: none;
+		border: none;
+	}
+	.discussion-user-threads {
+		padding: 0;
+		border: none;
+		background: none !important;
+		section.discussion .discussion-thread .discussion-article {
+			.dicussion-post {
+				background: #ff0000 !important;
+				header {
+					h3 {
+						font-family: @font-family-base !important;
+						font-size: @font-size-h4;
+					}
+				}
+			}
+		}
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -3679,3 +3707,6 @@ body.layout-accomplishment.certificate-honor {
 	}
 }
 
+* {
+//	color: red;
+}
