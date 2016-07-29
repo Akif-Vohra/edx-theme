@@ -1686,6 +1686,7 @@ div.course-wrapper {
 							background: none;
 							border: none;
 							box-shadow: none;
+
 							.discussion-post {
 								background: @color-mediumgrey;
 								padding: 20px;
@@ -1705,7 +1706,7 @@ div.course-wrapper {
 										font-family: @font-family-base;
 										font-size: 18px;
 										padding-bottom: 10px;
-										//color: @color-secondary;
+										line-height: 24px;
 									}
 								}
 								.post-context {
@@ -1984,9 +1985,10 @@ input:focus, textarea:focus,.wrapper--xblock textarea:focus, .forum-new-post-for
 	border-color: @color-secondary;
 	box-shadow: none;
 }
-input[type="submit"], .forum-new-post-form .submit, .login-register .action-primary, .passwordreset .form-actions button[type="submit"], .dashboard .my-courses .empty-dashboard-message a {
+input[type="submit"], .forum-new-post-form .submit, .login-register .action-primary, .passwordreset .form-actions button[type="submit"], .dashboard .my-courses .empty-dashboard-message, .container .discussion-body .discussion-submit-post a {
 	//display: block;
-	width: 160px;
+	width: auto;
+	min-width: 160px;
 	padding: 0;
 	border: none;
 	background: none;
@@ -2103,7 +2105,7 @@ input[type="submit"]:hover, .forum-new-post-form .submit:hover, .login-register 
 						transition: all 0.2s ease-out 0s;
 						color: @color-primary;
 						&:hover {
-							box-shadow: @box-shadow-hover;
+							box-shadow: @box-shadow-hover !important;
 							background: none !important;
 							background-color: @color-tertiary;
 							color: @color-primary;
@@ -2283,7 +2285,7 @@ input[type="submit"]:hover, .forum-new-post-form .submit:hover, .login-register 
 	}
 	
 		.action-primary {
-			padding-top: 5px;
+			padding: 5px 10px 0;
 			&:hover {
 				background: @color-secondary;
 				box-shadow: @box-shadow-hover;
@@ -2764,8 +2766,63 @@ section.container {
 body.discussion .content-wrapper {
 	background: @white;
 	#discussion-container {
+		.forum-nav {
+			border: 1px solid @color-lines;
+			border-radius: Ldefault-border-radius;
+		}
 		.discussion-column {
 			border: none;
+			.forum-thread-main-wrapper {
+				box-shadow: none;
+				.thread-content-wrapper {
+					padding: 0 0 0 20px;
+					.discussion-post {
+						padding: 30px;
+						background: @color-lightgrey;
+						h1.post-title {
+							padding-top: 0;
+							margin-top: 0;
+						}
+					}
+				}
+			}
+			.post-extended-content {
+				box-shadow: none;
+				.forum-response {
+					box-shadow: none;
+					border: 1px solid @color-lines;
+				}
+				.discussion-reply-new {
+					.reply-post-control {
+						a.discussion-submit-post {
+							width: auto;
+							min-width: 160px;
+							padding: 0;
+							border: none;
+							background: none;
+							background-color: @color-secondary;
+							box-shadow: none;
+							-webkit-border-radius: @default-border-radius;
+							-moz-border-radius: @default-border-radius;
+							border-radius: @default-border-radius;
+							border-bottom: 4px solid @color-secondary-dark;
+							text-transform: uppercase;
+							font-family: @font-family-headings;
+							font-size: 14px;
+							font-weight: 400;
+							letter-spacing: @letter-spacing-headings;
+							text-shadow: none;
+							transition: all 0.2s ease-out 0s;
+							color: @white;
+							text-align: center;
+							&:hover {
+								background: @color-secondary;
+								box-shadow: @box-shadow-hover;
+							}
+						}
+					}
+				}
+			}
 		}
 		.label {
 			color: @color-darkgrey;
@@ -2821,22 +2878,57 @@ body.discussion .content-wrapper {
 		}
 	}
 	//Discussion User Page
-	.user-profile {
+	section.user-profile {
 		vertical-align: top;
 		background: none;
-		border: none;
+		border: 1px solid @color-lines;
+		border-radius: @default-border-radius;
+		div.user-profile {
+			padding: 20px 25px 25px;
+		}
 	}
-	.discussion-user-threads {
-		padding: 0;
+	section.course-content {
+		float: none;
+		display: table-cell;
+		padding: 0 0 0 30px;
 		border: none;
 		background: none !important;
-		section.discussion .discussion-thread .discussion-article {
-			.dicussion-post {
-				background: #ff0000 !important;
-				header {
-					h3 {
-						font-family: @font-family-base !important;
-						font-size: @font-size-h4;
+		.discussion-thread {
+			margin: 0 0 30px 0;
+			.discussion-article {
+				border: none;
+				background: @color-lightgrey;
+				box-shadow: none;
+				border-radius: @default-border-radius;
+				.discussion-post {
+					padding: 25px 30px 30px !important;
+					border-radius: @default-border-radius;
+					background: none;
+					header {
+						h3 {
+							font-family: @font-family-base !important;
+							font-size: @font-size-h4;
+							font-weight: bold;
+						}
+					}
+				}
+				.post-tools {
+					border: none;
+					background: none;
+					box-shadow: none;
+					padding: 0 30px 30px 30px;
+					a {
+						color: @color-secondary;
+						padding: 0 !important;
+						font-size: @font-size-base;
+						line-height: @line-height-base;
+						display: inline;
+						&:hover {
+							color: @color-darkgrey;
+						}
+					}
+					&:hover {
+						background: none;
 					}
 				}
 			}
