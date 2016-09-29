@@ -3090,19 +3090,30 @@ section.container.dashboard {
 	.my-courses {
 		.empty-dashboard-message {
 			padding: 0;
-			margin: 0 0 1200px 0;
+			margin: 0 0 100px 0;
 			text-align: left;
+			background: none;
+			border-bottom: none;
 			p {
 				text-shadow: none;
+				color: @color-primary;
+				font-style: normal;
+				font-family: @font-family-base;
+				text-transform: none;
 				
 			}
 			a {
 				background: @color-tertiary;
-				border-bottom-color: @color-tertiary-dark;
+				border: none;
+				border-bottom: 4px solid @color-tertiary-dark;
+				border-radius: @default-border-radius;
 				color: @color-darkgrey;
 				padding: 10px 15px 5px 15px;
-				font-size: 18px;
+				font-family: @font-family-headings;
+				font-size: 16px;
+				text-shadow: none;
 				width: auto;
+				margin-left: 0;
 				&:hover {
 					box-shadow: @box-shadow-hover;
 				}
@@ -3647,12 +3658,14 @@ footer #footer-middle #social-media-icons ul li {
 footer #footer-bottom {
     background: #252729 none repeat scroll 0% 0%;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 11px;
-    padding-bottom: 20px;
+    .powered {
+    	text-align: right;
+    	padding: 5px 0px;
+    }
 }
 #bottom-menu ul {
     margin: 0px;
-    padding: 0px;
+    padding: 16px 0 0 0;
 }
 #bottom-menu ul li {
     display: inline;
