@@ -297,6 +297,10 @@ from openedx.core.lib.courses import course_image_url
             </li>
             % endif
 
+            % if course.self_paced: 
+              <li> ${_('Sie k&ouml;nnen den Kurs innerhalb des Kurszeitraumes in Ihrem eigenen Tempo absolvieren.')} </li> 
+            % endif
+
           % if get_course_about_section(request, course, "effort"):
           <!--  <li class="important-dates-item"><i class="material-icons">timelapse</i> <p class="important-dates-item-title">${_("Estimated Effort")}</p><span class="important-dates-item-text effort">${get_course_about_section(request, course, "effort")}</span></li>-->
           % endif
