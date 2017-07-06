@@ -19,6 +19,50 @@ body {
 	line-height: @line-height-base;
 	color: @color-primary;
 }
+
+.extra_register_buttons a {
+
+						display: block;
+						width: auto;
+						margin-top: 25px;
+						padding: 12px 15px 6px 15px;
+						border: none;
+						background: none;
+						background-color: @color-tertiary;
+						box-shadow: none;
+						-webkit-border-radius: @default-border-radius;
+						-moz-border-radius: @default-border-radius;
+						border-radius: @default-border-radius;
+						border-bottom: 4px solid @color-tertiary-dark;
+						text-transform: uppercase;
+						font-family: @font-family-headings;
+						font-size: 16px;
+						letter-spacing: @letter-spacing-headings;
+						text-shadow: none;
+						transition: all 0.2s ease-out 0s;
+						color: @color-primary  !important;
+						&:hover {
+							box-shadow: @box-shadow-hover !important;
+							background: none !important;
+							background-color: @color-tertiary;
+							color: @color-primary;
+						}
+						&:focus, &:link, &:visited, &:focus:not(:disabled), &:active {
+							background-color: @color-tertiary;
+							border-bottom: 4px solid @color-tertiary-dark;
+							color: #000;
+							box-shadow: none;
+						}
+                                                background-color: #ffe126;
+                                                border-bottom: 4px solid #debd10;
+                                                color: #000;
+                                                box-shadow: none;
+                                                max-width : 250px;
+                                                text-align: center;
+
+
+}
+
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;

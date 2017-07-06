@@ -178,7 +178,21 @@ import calendar
             <label for="email">${_('E-mail')}</label>
             <input class="" id="email" type="email" name="email" value="${email}" placeholder="${_('example: username@domain.com')}" required aria-required="true" />
           </li>
-
+          
+          
+          <li class="field-group">
+          <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['title']} select" id="field-title">
+              <label for="title">${_("Title")}</label>
+              <select id="title" name="title" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['title'] == 'required' else ''}>
+                <option value="${code}">Dr.</option>
+                <option value="${code}">Prof.</option>
+                <option value="${code}">Prof. Dr.</option>
+                <option value="${code}">Ph. D.</option>
+              </select>
+            </div>
+          </li>
+          
+          
           <li class="field required text" id="field-name">
             <label for="name">${_('Full Name')}</label>
             <input id="name" type="text" name="name" value="${name}" placeholder="${_('example: Jane Doe')}" required aria-required="true" aria-describedby="name-tip" />
