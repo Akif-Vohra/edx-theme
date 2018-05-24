@@ -18,6 +18,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 })(window,document,'script','dataLayer','GTM-5MDJCV');</script>
 
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+<script>
+
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#252729",
+      "text": "#ffffff"
+    },
+    "button": {
+      "background": "#00a651",
+      "text": "#ffffff"
+    }
+  },
+  "cookie": {
+     "expiryDays" : 3650,
+  }, 
+  "theme": "classic",
+  "position": "bottom-right",
+  "content": {
+    "href": "https://lynx-training.de/cookie_settings",
+    "message": "Unsere Website nutzt Cookies, um bestmögliche Funktionalität bieten zu können. Durch einen Klick auf OK stimmen Sie dem zu. Weitere Informationen und Cookie-Einstellungen finden Sie",
+    "link": "hier",
+    "dismiss": "OK"
+  }
+})});
+</script>
+
 <!-- End Google Tag Manager -->
 <footer class="global">
 <div class="footer">
